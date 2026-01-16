@@ -1,0 +1,1145 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="HydroShear: Hydroelastic Shear Simulation for Tactile Sim-to-Real Reinforcement Learning.">
+  <meta name="keywords" content="Nerfies, D-NeRF, NeRF">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HydroShear: Hydroelastic Shear Simulation for Tactile Sim-to-Real Reinforcement Learning</title>
+
+  <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WE53S1HZEN"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-WE53S1HZEN');
+    </script>
+
+<!-- <link rel="icon" href="static/images/target_favicon.png" type="image/x-icon"> -->
+<link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <!-- <link rel="icon" href="./static/images/favicon.svg"> -->
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+  
+  <!-- Show more and show less button -->
+  <script>
+    function toggleMoreVideos() {
+      var moreVideos = document.getElementById("moreVideos");
+      var showMoreBtn = document.getElementById("showMoreBtn");
+      if (moreVideos.style.display === "none") {
+        moreVideos.style.display = "block";
+        showMoreBtn.textContent = "Show less";
+      } else {
+        moreVideos.style.display = "none";
+        showMoreBtn.textContent = "Show more";
+      }
+    }
+  </script>
+
+  <script>
+    function toggleMoreVideos2() {
+      var moreVideos = document.getElementById("moreVideos2");
+      var showMoreBtn = document.getElementById("showMoreBtn2");
+      if (moreVideos.style.display === "none") {
+        moreVideos.style.display = "block";
+        showMoreBtn.textContent = "Show less";
+      } else {
+        moreVideos.style.display = "none";
+        showMoreBtn.textContent = "Show more";
+      }
+    }
+  </script>
+
+  <script>
+    function toggleMoreVideos3() {
+      var moreVideos = document.getElementById("moreVideos3");
+      var showMoreBtn = document.getElementById("showMoreBtn3");
+      if (moreVideos.style.display === "none") {
+        moreVideos.style.display = "block";
+        showMoreBtn.textContent = "Show less";
+      } else {
+        moreVideos.style.display = "none";
+        showMoreBtn.textContent = "Show more";
+      }
+    }
+  </script>
+
+  <script>
+    function toggleMoreVideos4() {
+      var moreVideos = document.getElementById("moreVideos4");
+      var showMoreBtn = document.getElementById("showMoreBtn4");
+      if (moreVideos.style.display === "none") {
+        moreVideos.style.display = "block";
+        showMoreBtn.textContent = "Show less";
+      } else {
+        moreVideos.style.display = "none";
+        showMoreBtn.textContent = "Show more";
+      }
+    }
+  </script>
+
+  <script>
+    function toggleMoreVideos5() {
+      var moreVideos = document.getElementById("moreVideos5");
+      var showMoreBtn = document.getElementById("showMoreBtn5");
+      if (moreVideos.style.display === "none") {
+        moreVideos.style.display = "block";
+        showMoreBtn.textContent = "Show less";
+      } else {
+        moreVideos.style.display = "none";
+        showMoreBtn.textContent = "Show more";
+      }
+    }
+  </script>
+
+  <style>
+    .columns.is-centered {
+      margin: 0 2rem; /* Add horizontal space between the two groups */
+    }
+  </style>
+
+  <style>
+    .column.is-half {
+      margin-right: 2rem; /* Adjust this value to increase the space */
+    }
+  </style>
+
+  <style>
+        .table-wrap { max-width: 960px; margin: 24px auto; }
+        table { width: 100%; border-collapse: collapse; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size: 18px; }
+        caption { caption-side: bottom; padding-top: 8px; font-size: 20px; color: #555; }
+        thead th { background: #f6f7f9; font-weight: 700; border-bottom: 2px solid #ddd; padding: 10px 8px; text-align: center; }
+        tbody td { border-bottom: 1px solid #eee; padding: 8px; text-align: center; }
+        tbody td:first-child, thead th:first-child { text-align: left; white-space: nowrap; }
+        .gain { color: #2e7d32; }   /* green */
+        .loss { color: #c62828; }   /* red */
+        .avg-col { font-variant: small-caps; }
+        
+        /* Center videos within their columns */
+        .column .content {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+        
+        .column video {
+          max-width: 100%;
+          width: auto;
+          height: auto;
+        }
+  </style>
+
+  <style>
+    .centered-image {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      width: 80%;
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div class="navbar-menu">
+    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+      <a class="navbar-item" href="https://hydroshear.github.io/">
+      <span class="icon">
+          <i class="fas fa-home"></i>
+      </span>
+      </a>
+
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          More Research
+        </a>
+        <div class="navbar-dropdown">
+        </div>
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+<!-- Title & Authors -->
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title">
+                <!-- <img src="static/images/logo-black.png" alt="Icon" style="height: 1em; vertical-align: middle; margin-right: 0.0em; margin-bottom: 0.2em;"> -->
+                HydroShear: Hydroelastic Shear Simulation for Tactile Sim-to-Real Reinforcement Learning
+              </h1>
+          <!-- <h4 class="title is-size-4 publication-title" style="color: blue;"></h4> -->
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a>Anonymous Authors</a>
+            </span>
+        </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <!-- <span class="link-block">
+                <a href="https://arxiv.org/"
+                   class="external-link button is-normal is-rounded is-dark" , target="_blank">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span> -->
+              <!-- Video Link. -->
+              <!-- <span class="link-block">
+                <a href="https://www.youtube.com"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Video</span>
+                </a>
+              </span> -->
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark" , target="_blank">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code (coming soon)</span>
+                  </a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Abstract. -->
+  <div class="columns is-centered has-text-centered">
+    <div class="column is-four-fifths">
+    <p style="margin: 5px 0;" class="is-size-5">
+       TL;DR HydroShear is a non-holonomic hydroelastic model for
+       high-fidelity tactile shear simulation for training zero-shot sim-to-real tactile reinforcement learning policies on diverse contact
+       and force-rich manipulation tasks.
+    </p>
+    
+    <br>
+    <!-- <div class="video-container" style="max-width: 1200px; margin: 40px auto;">
+    <video controls playsinline preload="metadata" width="100%">
+        <source src="static/videos/main/test_peg_insertion.mp4" type="video/mp4">
+    </video>
+    </div> -->
+
+      <!-- <div style="display: flex; justify-content: center;">
+        <iframe width="1120" height="630" src="https://www.youtube.com/embed/jUNfQ_KbXzk?si=jD4hYuMrAcrlxRxW" 
+                title="YouTube video player" frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+        </iframe>
+      </div> -->
+    
+      <br>
+      <br>
+      <h2 class="title is-3">Abstract</h2>
+      <div class="content has-text-justified">
+        <p class="underline-caps is-size-5">
+          Sim-to-real transfer for contact-rich manipulation requires sensing modalities that go beyond 
+          geometry to capture the dynamics of interaction. Existing simulators for vision-based tactile 
+          sensors primarily focus on rendering images and either neglect tactile shear or approximate it 
+          with oversimplified models, leading to a persistent sim-to-real gap for many dexterous tasks. 
+          We present HydroShear, a non-holonomic hydroelastic tactile shear simulation framework that models 
+          path-dependent shear fields for various tactile sensors including vision-based and magnetic-based. 
+          HydroShear extends hydroelastic contact models using Signed Distance Functions (SDFs) to track object 
+          paths across the sensor membrane, enabling precise simulation of shear force fields and twist during 
+          complex sticking and slipping events. This approach generates physics-based, computationally efficient 
+          force fields from arbitrary watertight geometries while remaining agnostic to the underlying physics 
+          engine. In experiments with a GelSight Mini sensor, HydroShear more faithfully reproduces real tactile 
+          shear than existing methods and enables zero-shot sim-to-real transfer of reinforcement learning policies 
+          for insertion and fine gripper control for slippages, achieving substantially higher success rates than 
+          prior tactile shear simulators.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Abstract & Overview Video -->
+<section class="section">
+  <!-- <div class="container is-max-desktop"> -->
+
+    <!-- Paper video. -->
+    <!-- <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Overview Video</h2>
+        <div class="publication-video">
+          <iframe src="https://www.youtube.com/embed/"
+                  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div> -->
+    <!--/ Paper video. -->
+
+  <style>
+    .underline-caps span {
+      text-decoration: underline;
+    }
+  </style>
+    <div style="height: 20px;"></div>
+
+    <div class="container">
+      <h2 class="title is-centered has-text-centered">HydroShear Framework</h2>
+      <p class="is-centered has-text-centered is-size-5">HydroShear ...</p>
+      <br>
+      <img src="" alt="HydroShear Framework Overview" class="centered-image">
+    </div>
+    
+    <div style="height: 40px;"></div>
+
+  </div>
+<br>
+
+<!-- REAL Experimental Results-->
+<section class="section">
+
+<!-- OPEN DRAWER -->
+  <div class="container is-four-fifths">
+    <div class="columns is-centered has-text-centered">
+      <h2 class="title is-3">Experimental Results</h2>
+    </div>
+    <br>
+    <p class="is-size-5">
+        We train tactile-based RL policies in simulation and test under zero-shot sim-to-real transfer. <br>
+        We compare our method HydroShear against state-of-the-art baselines TacSL and FOTS. <br>
+        We evaluate the policies four tasks: Peg Insertion, Bin Packing, Book Shelving, and Drawer Pulling.
+    </p>
+    <br>
+      <!-- PEG INSERTION VIDEOS START -->
+
+    <h2 class="title is-5">Peg Insertion.</h2>
+
+    <!-- Model 1 -->
+    <h3 class="title is-6 has-text-centered">Model 1: HydroShear (Ours)</h3>
+    <div class="columns is-centered sync-group" style="align-items: center; margin-bottom: 3rem;">
+      <div class="column is-three-quarters is-centered has-text-centered">
+        <div class="content">
+          <video class="sync-video" autoplay="" controls="" muted="" playsinline="" style="width: 100%; height: auto; border-radius: 10px;">
+            <source src="static/videos/rollouts/peg_insertion/ep_1/hydroshear_20260107_230752_success_vision.mp4" type="video/mp4" class="figure-img img-fluid rounded">
+          </video>
+        </div>
+      </div>
+      <div class="column is-one-quarter is-centered has-text-centered">
+        <div class="content">
+          <video class="sync-video" autoplay="" controls="" muted="" playsinline="" style="width: 100%; height: auto; border-radius: 10px;">
+            <source src="static/videos/rollouts/peg_insertion/ep_1/hydroshear_20260107_230752_success_tactile.mp4" type="video/mp4" class="figure-img img-fluid rounded">
+          </video>
+        </div>
+      </div>
+    </div>
+
+    <!-- Model 2 -->
+    <h3 class="title is-6 has-text-centered">Model 2: Baseline A</h3>
+    <div class="columns is-centered sync-group" style="align-items: center; margin-bottom: 3rem;">
+      <div class="column is-three-quarters is-centered has-text-centered">
+        <div class="content">
+          <video class="sync-video" autoplay="" controls="" muted="" playsinline="" style="width: 100%; height: auto; border-radius: 10px;">
+            <source src="static/videos/rollouts/peg_insertion/ep_1/hydroshear_20260107_230752_success_vision.mp4" type="video/mp4" class="figure-img img-fluid rounded">
+          </video>
+        </div>
+      </div>
+      <div class="column is-one-quarter is-centered has-text-centered">
+        <div class="content">
+          <video class="sync-video" autoplay="" controls="" muted="" playsinline="" style="width: 100%; height: auto; border-radius: 10px;">
+            <source src="static/videos/rollouts/peg_insertion/ep_1/hydroshear_20260107_230752_success_tactile.mp4" type="video/mp4" class="figure-img img-fluid rounded">
+          </video>
+        </div>
+      </div>
+    </div>
+
+    <!-- Model 3 -->
+    <h3 class="title is-6 has-text-centered">Model 3: Baseline B</h3>
+    <div class="columns is-centered sync-group" style="align-items: center; margin-bottom: 3rem;">
+      <div class="column is-three-quarters is-centered has-text-centered">
+        <div class="content">
+          <video class="sync-video" autoplay="" controls="" muted="" playsinline="" style="width: 100%; height: auto; border-radius: 10px;">
+            <source src="static/videos/rollouts/peg_insertion/ep_1/hydroshear_20260107_230752_success_vision.mp4" type="video/mp4" class="figure-img img-fluid rounded">
+          </video>
+        </div>
+      </div>
+      <div class="column is-one-quarter is-centered has-text-centered">
+        <div class="content">
+          <video class="sync-video" autoplay="" controls="" muted="" playsinline="" style="width: 100%; height: auto; border-radius: 10px;">
+            <source src="static/videos/rollouts/peg_insertion/ep_1/hydroshear_20260107_230752_success_tactile.mp4" type="video/mp4" class="figure-img img-fluid rounded">
+          </video>
+        </div>
+      </div>
+    </div>
+
+    <!-- Model 4 -->
+    <h3 class="title is-6 has-text-centered">Model 4: Baseline C</h3>
+    <div class="columns is-centered sync-group" style="align-items: center; margin-bottom: 3rem;">
+      <div class="column is-three-quarters is-centered has-text-centered">
+        <div class="content">
+          <video class="sync-video" autoplay="" controls="" muted="" playsinline="" style="width: 100%; height: auto; border-radius: 10px;">
+            <source src="static/videos/rollouts/peg_insertion/ep_1/hydroshear_20260107_230752_success_vision.mp4" type="video/mp4" class="figure-img img-fluid rounded">
+          </video>
+        </div>
+      </div>
+      <div class="column is-one-quarter is-centered has-text-centered">
+        <div class="content">
+          <video class="sync-video" autoplay="" controls="" muted="" playsinline="" style="width: 100%; height: auto; border-radius: 10px;">
+            <source src="static/videos/rollouts/peg_insertion/ep_1/hydroshear_20260107_230752_success_tactile.mp4" type="video/mp4" class="figure-img img-fluid rounded">
+          </video>
+        </div>
+      </div>
+    </div>
+
+    <!-- Carousel View -->
+    <h3 class="title is-4 has-text-centered" style="margin-top: 2rem;">Carousel View</h3>
+    <div id="results-carousel" class="carousel results-carousel">
+      
+      <!-- Item 1 -->
+      <div class="item item-model1">
+        <h3 class="title is-6 has-text-centered" style="margin-top: 0.5rem; margin-bottom: 0.5rem;">HydroShear (Ours)</h3>
+        <div class="columns is-centered sync-group" style="align-items: center; margin: 0 1rem;">
+          
+          <!-- Vision Left (Cropped) -->
+          <div class="column is-one-third has-text-centered">
+            <div style="width: 100%; height: 240px; overflow: hidden; border-radius: 10px;">
+                <video class="sync-video" autoplay="" controls="" muted="" playsinline="" style="width: 100%; height: 100%; object-fit: cover; object-position: 0% 50%;">
+                  <source src="static/videos/rollouts/peg_insertion/ep_1/hydroshear_20260107_230752_success_vision.mp4" type="video/mp4">
+                </video>
+            </div>
+          </div>
+
+          <!-- Vision Right (Cropped) -->
+          <div class="column is-one-third has-text-centered">
+            <div style="width: 100%; height: 240px; overflow: hidden; border-radius: 10px;">
+                <video class="sync-video" autoplay="" controls="" muted="" playsinline="" style="width: 100%; height: 100%; object-fit: cover; object-position: 100% 50%;">
+                  <source src="static/videos/rollouts/peg_insertion/ep_1/hydroshear_20260107_230752_success_vision.mp4" type="video/mp4">
+                </video>
+            </div>
+          </div>
+
+          <!-- Tactile -->
+          <div class="column is-one-third has-text-centered">
+            <div style="width: 100%; height: 240px; overflow: hidden; border-radius: 10px;">
+              <video class="sync-video" autoplay="" controls="" muted="" playsinline="" style="width: 100%; height: 100%; object-fit: cover; object-position: center;">
+                <source src="static/videos/rollouts/peg_insertion/ep_1/hydroshear_20260107_230752_success_tactile.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Item 2 -->
+      <div class="item item-model2">
+        <h3 class="title is-6 has-text-centered" style="margin-top: 0.5rem; margin-bottom: 0.5rem;">TacSL Grayscale</h3>
+        <div class="columns is-centered sync-group" style="align-items: center; margin: 0 1rem;">
+          
+          <!-- Vision Left (Cropped) -->
+          <div class="column is-one-third has-text-centered">
+            <div style="width: 100%; height: 240px; overflow: hidden; border-radius: 10px;">
+                <video class="sync-video" autoplay="" controls="" muted="" playsinline="" style="width: 100%; height: 100%; object-fit: cover; object-position: 0% 50%;">
+                  <source src="static/videos/rollouts/peg_insertion/ep_1/hydroshear_20260107_230752_success_vision.mp4" type="video/mp4">
+                </video>
+            </div>
+          </div>
+
+          <!-- Vision Right (Cropped) -->
+          <div class="column is-one-third has-text-centered">
+            <div style="width: 100%; height: 240px; overflow: hidden; border-radius: 10px;">
+                <video class="sync-video" autoplay="" controls="" muted="" playsinline="" style="width: 100%; height: 100%; object-fit: cover; object-position: 100% 50%;">
+                  <source src="static/videos/rollouts/peg_insertion/ep_1/hydroshear_20260107_230752_success_vision.mp4" type="video/mp4">
+                </video>
+            </div>
+          </div>
+
+          <!-- Tactile -->
+          <div class="column is-one-third has-text-centered">
+            <div style="width: 100%; height: 240px; overflow: hidden; border-radius: 10px;">
+              <video class="sync-video" autoplay="" controls="" muted="" playsinline="" style="width: 100%; height: 100%; object-fit: cover; object-position: center;">
+                <source src="static/videos/rollouts/peg_insertion/ep_1/hydroshear_20260107_230752_success_tactile.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Item 3 -->
+      <div class="item item-model3">
+        <h3 class="title is-6 has-text-centered" style="margin-top: 0.5rem; margin-bottom: 0.5rem;">TacSL Normalized Shear</h3>
+        <div class="columns is-centered sync-group" style="align-items: center; margin: 0 1rem;">
+          
+          <!-- Vision Left (Cropped) -->
+          <div class="column is-one-third has-text-centered">
+            <div style="width: 100%; height: 240px; overflow: hidden; border-radius: 10px;">
+                <video class="sync-video" autoplay="" controls="" muted="" playsinline="" style="width: 100%; height: 100%; object-fit: cover; object-position: 0% 50%;">
+                  <source src="static/videos/rollouts/peg_insertion/ep_1/hydroshear_20260107_230752_success_vision.mp4" type="video/mp4">
+                </video>
+            </div>
+          </div>
+
+          <!-- Vision Right (Cropped) -->
+          <div class="column is-one-third has-text-centered">
+            <div style="width: 100%; height: 240px; overflow: hidden; border-radius: 10px;">
+                <video class="sync-video" autoplay="" controls="" muted="" playsinline="" style="width: 100%; height: 100%; object-fit: cover; object-position: 100% 50%;">
+                  <source src="static/videos/rollouts/peg_insertion/ep_1/hydroshear_20260107_230752_success_vision.mp4" type="video/mp4">
+                </video>
+            </div>
+          </div>
+
+          <!-- Tactile -->
+          <div class="column is-one-third has-text-centered">
+            <div style="width: 100%; height: 240px; overflow: hidden; border-radius: 10px;">
+              <video class="sync-video" autoplay="" controls="" muted="" playsinline="" style="width: 100%; height: 100%; object-fit: cover; object-position: center;">
+                <source src="static/videos/rollouts/peg_insertion/ep_1/hydroshear_20260107_230752_success_tactile.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Item 4 -->
+      <div class="item item-model4">
+        <h3 class="title is-6 has-text-centered" style="margin-top: 0.5rem; margin-bottom: 0.5rem;">FOTS</h3>
+        <div class="columns is-centered sync-group" style="align-items: center; margin: 0 1rem;">
+          
+          <!-- Vision Left (Cropped) -->
+          <div class="column is-one-third has-text-centered">
+            <div style="width: 100%; height: 240px; overflow: hidden; border-radius: 10px;">
+                <video class="sync-video" autoplay="" controls="" muted="" playsinline="" style="width: 100%; height: 100%; object-fit: cover; object-position: 0% 50%;">
+                  <source src="static/videos/rollouts/peg_insertion/ep_1/hydroshear_20260107_230752_success_vision.mp4" type="video/mp4">
+                </video>
+            </div>
+          </div>
+
+          <!-- Vision Right (Cropped) -->
+          <div class="column is-one-third has-text-centered">
+            <div style="width: 100%; height: 240px; overflow: hidden; border-radius: 10px;">
+                <video class="sync-video" autoplay="" controls="" muted="" playsinline="" style="width: 100%; height: 100%; object-fit: cover; object-position: 100% 50%;">
+                  <source src="static/videos/rollouts/peg_insertion/ep_1/hydroshear_20260107_230752_success_vision.mp4" type="video/mp4">
+                </video>
+            </div>
+          </div>
+
+          <!-- Tactile -->
+          <div class="column is-one-third has-text-centered">
+            <div style="width: 100%; height: 240px; overflow: hidden; border-radius: 10px;">
+              <video class="sync-video" autoplay="" controls="" muted="" playsinline="" style="width: 100%; height: 100%; object-fit: cover; object-position: center;">
+                <source src="static/videos/rollouts/peg_insertion/ep_1/hydroshear_20260107_230752_success_tactile.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+
+    
+
+    <div class="columns is-centered">
+      <!-- Column 1 -->
+      <div class="column">
+        <div class="container sync-group has-text-centered">
+          <div class="content" style="margin-bottom: 2rem;">
+            <video class="sync-video" autoplay="" controls="" muted="" playsinline="" style="width: 100%; height: auto; border-radius: 10px;">
+              <source src="static/videos/sim/peg_insertion/frame_video.mp4" type="video/mp4" class="figure-img img-fluid rounded">
+            </video>
+          </div>
+          <div class="content">
+            <video class="sync-video" autoplay="" controls="" muted="" playsinline="" style="width: 100%; height: auto; border-radius: 10px;">
+              <source src="static/videos/sim/peg_insertion/hydrosoft_marker_shear_video.mp4" type="video/mp4" class="figure-img img-fluid rounded">
+            </video>
+          </div>
+        </div>
+      </div>
+
+      <!-- Column 2 -->
+      <div class="column">
+        <div class="container sync-group has-text-centered">
+          <div class="content" style="margin-bottom: 2rem;">
+            <video class="sync-video" autoplay="" controls="" muted="" playsinline="" style="width: 100%; height: auto; border-radius: 10px;">
+              <source src="static/videos/sim/peg_insertion/frame_video.mp4" type="video/mp4" class="figure-img img-fluid rounded">
+            </video>
+          </div>
+          <div class="content">
+            <video class="sync-video" autoplay="" controls="" muted="" playsinline="" style="width: 100%; height: auto; border-radius: 10px;">
+              <source src="static/videos/sim/peg_insertion/hydrosoft_marker_shear_video.mp4" type="video/mp4" class="figure-img img-fluid rounded">
+            </video>
+          </div>
+        </div>
+      </div>
+
+      <!-- Column 3 -->
+      <div class="column">
+        <div class="container sync-group has-text-centered">
+          <div class="content" style="margin-bottom: 2rem;">
+            <video class="sync-video" autoplay="" controls="" muted="" playsinline="" style="width: 100%; height: auto; border-radius: 10px;">
+              <source src="static/videos/sim/peg_insertion/frame_video.mp4" type="video/mp4" class="figure-img img-fluid rounded">
+            </video>
+          </div>
+          <div class="content">
+            <video class="sync-video" autoplay="" controls="" muted="" playsinline="" style="width: 100%; height: auto; border-radius: 10px;">
+              <source src="static/videos/sim/peg_insertion/hydrosoft_marker_shear_video.mp4" type="video/mp4" class="figure-img img-fluid rounded">
+            </video>
+          </div>
+        </div>
+      </div>
+
+      <!-- Column 4 -->
+      <div class="column">
+        <div class="container sync-group has-text-centered">
+          <div class="content" style="margin-bottom: 2rem;">
+            <video class="sync-video" autoplay="" controls="" muted="" playsinline="" style="width: 100%; height: auto; border-radius: 10px;">
+              <source src="static/videos/sim/peg_insertion/frame_video.mp4" type="video/mp4" class="figure-img img-fluid rounded">
+            </video>
+          </div>
+          <div class="content">
+            <video class="sync-video" autoplay="" controls="" muted="" playsinline="" style="width: 100%; height: auto; border-radius: 10px;">
+              <source src="static/videos/sim/peg_insertion/hydrosoft_marker_shear_video.mp4" type="video/mp4" class="figure-img img-fluid rounded">
+            </video>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="columns is-centered">
+      <div class="column">
+        <div class="content">
+          <video id="dollyzoom" autoplay="" controls="" muted="" loop="" playsinline="" height="100%" onloadstart="this.playbackRate=1">
+	    <source src="static/videos/main/test_peg_insertion.mp4" type="video/mp4" class="figure-img img-fluid rounded">
+          </video>
+          <p style="text-align: center;">
+            TacSL Gray: <font color="#FF4500"><b>Failure</b></font>
+          </p>
+        </div>
+      </div>
+      <div class="column">
+        <div class="content">
+          <video id="dollyzoom" autoplay="" controls="" muted="" loop="" playsinline="" height="100%" onloadstart="this.playbackRate=1">
+            <source src="static/videos/main/test_peg_insertion.mp4" type="video/mp4" class="figure-img img-fluid rounded">
+          </video>
+          <p style="text-align: center;">
+            <font color="#FF4500"><b>Failure</b></font>: FOTS
+          </p>
+        </div>
+      </div>
+      <div class="column">
+        <div class="content">
+          <video id="dollyzoom" autoplay="" controls="" muted="" loop="" playsinline="" height="100%" onloadstart="this.playbackRate=1">
+            <source src="static/videos/main/test_peg_insertion.mp4" type="video/mp4" class="figure-img img-fluid rounded">
+          </video>
+          <p style="text-align: center;">
+            <font color="#76B900"><b>Success</b></font>: HydroShear
+          </p>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="columns is-centered">
+      <div class="column">
+        <div class="content">
+          <video id="dollyzoom" autoplay="" controls="" muted="" loop="" playsinline="" height="100%" onloadstart="this.playbackRate=1">
+	    <source src="static/videos/main/test_peg_insertion.mp4" type="video/mp4" class="figure-img img-fluid rounded">
+          </video>
+          <p style="text-align: center;">
+            TacSL Gray: <font color="#FF4500"><b>Failure</b></font>
+          </p>
+        </div>
+      </div>
+      <div class="column">
+        <div class="content">
+          <video id="dollyzoom" autoplay="" controls="" muted="" loop="" playsinline="" height="100%" onloadstart="this.playbackRate=1">
+            <source src="static/videos/main/test_peg_insertion.mp4" type="video/mp4" class="figure-img img-fluid rounded">
+          </video>
+          <p style="text-align: center;">
+            <font color="#FF4500"><b>Failure</b></font>: FOTS
+          </p>
+        </div>
+      </div>
+      <div class="column">
+        <div class="content">
+          <video id="dollyzoom" autoplay="" controls="" muted="" loop="" playsinline="" height="100%" onloadstart="this.playbackRate=1">
+            <source src="static/videos/main/test_peg_insertion.mp4" type="video/mp4" class="figure-img img-fluid rounded">
+          </video>
+          <p style="text-align: center;">
+            <font color="#76B900"><b>Success</b></font>: HydroShear
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="columns is-centered">
+      <div class="column">
+        <div class="content">
+          <video id="dollyzoom" autoplay="" controls="" muted="" loop="" playsinline="" height="100%" onloadstart="this.playbackRate=1">
+	    <source src="static/videos/main/test_peg_insertion.mp4" type="video/mp4" class="figure-img img-fluid rounded">
+          </video>
+          <p style="text-align: center;">
+            <font color="#FF4500"><b>Failure</b></font>: TacSL
+          </p>
+        </div>
+      </div>
+      <div class="column">
+        <div class="content">
+          <video id="dollyzoom" autoplay="" controls="" muted="" loop="" playsinline="" height="100%" onloadstart="this.playbackRate=1">
+            <source src="static/videos/main/test_peg_insertion.mp4" type="video/mp4" class="figure-img img-fluid rounded">
+          </video>
+          <p style="text-align: center;">
+            <font color="#FF4500"><b>Failure</b></font>: FOTS
+          </p>
+        </div>
+      </div>
+      <div class="column">
+        <div class="content">
+          <video id="dollyzoom" autoplay="" controls="" muted="" loop="" playsinline="" height="100%" onloadstart="this.playbackRate=1">
+            <source src="static/videos/main/test_peg_insertion.mp4" type="video/mp4" class="figure-img img-fluid rounded">
+          </video>
+          <p style="text-align: center;">
+            <font color="#76B900"><b>Success</b></font>: HydroShear
+          </p>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- PEG INSERTION VIDEOS END -->
+
+
+    <!-- BIN PACKING VIDEOS START -->
+
+      <h2 class="title is-5">Bin Packing.</h2>
+      <div class="columns is-centered">
+        <div class="column">
+          <div class="content">
+            <video id="dollyzoom" autoplay="" controls="" muted="" loop="" playsinline="" height="100%" onloadstart="this.playbackRate=1">
+        <source src="static/videos/main/test_bin_packing2.mp4" type="video/mp4" class="figure-img img-fluid rounded">
+            </video>
+            <p style="text-align: center;">
+              <font color="#FF4500"><b>Failure</b></font>: TacSL
+            </p>
+          </div>
+        </div>
+        <div class="column">
+          <div class="content">
+            <video id="dollyzoom" autoplay="" controls="" muted="" loop="" playsinline="" height="100%" onloadstart="this.playbackRate=1">
+              <source src="static/videos/main/test_bin_packing2.mp4" type="video/mp4" class="figure-img img-fluid rounded">
+            </video>
+            <p style="text-align: center;">
+              <font color="#FF4500"><b>Failure</b></font>: FOTS
+            </p>
+          </div>
+        </div>
+        <div class="column">
+          <div class="content">
+            <video id="dollyzoom" autoplay="" controls="" muted="" loop="" playsinline="" height="100%" onloadstart="this.playbackRate=1">
+              <source src="static/videos/main/test_bin_packing2.mp4" type="video/mp4" class="figure-img img-fluid rounded">
+            </video>
+            <p style="text-align: center;">
+              <font color="#76B900"><b>Success</b></font>: HydroShear
+            </p>
+          </div>
+        </div>
+      </div>
+  
+      <div class="columns is-centered">
+        <div class="column">
+          <div class="content">
+            <video id="dollyzoom" autoplay="" controls="" muted="" loop="" playsinline="" height="100%" onloadstart="this.playbackRate=1">
+        <source src="static/videos/main/test_bin_packing2.mp4" type="video/mp4" class="figure-img img-fluid rounded">
+            </video>
+            <p style="text-align: center;">
+              <font color="#FF4500"><b>Failure</b></font>: TacSL
+            </p>
+          </div>
+        </div>
+        <div class="column">
+          <div class="content">
+            <video id="dollyzoom" autoplay="" controls="" muted="" loop="" playsinline="" height="100%" onloadstart="this.playbackRate=1">
+              <source src="static/videos/main/test_bin_packing2.mp4" type="video/mp4" class="figure-img img-fluid rounded">
+            </video>
+            <p style="text-align: center;">
+              <font color="#FF4500"><b>Failure</b></font>: FOTS
+            </p>
+          </div>
+        </div>
+        <div class="column">
+          <div class="content">
+            <video id="dollyzoom" autoplay="" controls="" muted="" loop="" playsinline="" height="100%" onloadstart="this.playbackRate=1">
+              <source src="static/videos/main/test_bin_packing2.mp4" type="video/mp4" class="figure-img img-fluid rounded">
+            </video>
+            <p style="text-align: center;">
+              <font color="#76B900"><b>Success</b></font>: HydroShear
+            </p>
+          </div>
+        </div>
+      </div>
+  
+  
+      <!-- BIN PACKING VIDEOS END -->
+
+    <!-- BOOK SHELVING VIDEOS START -->
+
+    <h2 class="title is-5">Book Shelving.</h2>
+    <div class="columns is-centered">
+      <div class="column">
+        <div class="content">
+          <video id="dollyzoom" autoplay="" controls="" muted="" loop="" playsinline="" height="100%" onloadstart="this.playbackRate=1">
+      <source src="static/videos/main/test_bin_packing2.mp4" type="video/mp4" class="figure-img img-fluid rounded">
+          </video>
+          <p style="text-align: center;">
+            <font color="#FF4500"><b>Failure</b></font>: TacSL
+          </p>
+        </div>
+      </div>
+      <div class="column">
+        <div class="content">
+          <video id="dollyzoom" autoplay="" controls="" muted="" loop="" playsinline="" height="100%" onloadstart="this.playbackRate=1">
+            <source src="static/videos/main/test_bin_packing2.mp4" type="video/mp4" class="figure-img img-fluid rounded">
+          </video>
+          <p style="text-align: center;">
+            <font color="#FF4500"><b>Failure</b></font>: FOTS
+          </p>
+        </div>
+      </div>
+      <div class="column">
+        <div class="content">
+          <video id="dollyzoom" autoplay="" controls="" muted="" loop="" playsinline="" height="100%" onloadstart="this.playbackRate=1">
+            <source src="static/videos/main/test_bin_packing2.mp4" type="video/mp4" class="figure-img img-fluid rounded">
+          </video>
+          <p style="text-align: center;">
+            <font color="#76B900"><b>Success</b></font>: HydroShear
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="columns is-centered">
+      <div class="column">
+        <div class="content">
+          <video id="dollyzoom" autoplay="" controls="" muted="" loop="" playsinline="" height="100%" onloadstart="this.playbackRate=1">
+      <source src="static/videos/main/test_bin_packing2.mp4" type="video/mp4" class="figure-img img-fluid rounded">
+          </video>
+          <p style="text-align: center;">
+            <font color="#FF4500"><b>Failure</b></font>: TacSL
+          </p>
+        </div>
+      </div>
+      <div class="column">
+        <div class="content">
+          <video id="dollyzoom" autoplay="" controls="" muted="" loop="" playsinline="" height="100%" onloadstart="this.playbackRate=1">
+            <source src="static/videos/main/test_bin_packing2.mp4" type="video/mp4" class="figure-img img-fluid rounded">
+          </video>
+          <p style="text-align: center;">
+            <font color="#FF4500"><b>Failure</b></font>: FOTS
+          </p>
+        </div>
+      </div>
+      <div class="column">
+        <div class="content">
+          <video id="dollyzoom" autoplay="" controls="" muted="" loop="" playsinline="" height="100%" onloadstart="this.playbackRate=1">
+            <source src="static/videos/main/test_bin_packing2.mp4" type="video/mp4" class="figure-img img-fluid rounded">
+          </video>
+          <p style="text-align: center;">
+            <font color="#76B900"><b>Success</b></font>: HydroShear
+          </p>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- BOOK SHELVING VIDEOS END -->
+
+    <!-- DRAWER PULLING VIDEOS START -->
+
+    <h2 class="title is-5">Drawer Pulling.</h2>
+    <div class="columns is-centered">
+      <div class="column">
+        <div class="content">
+          <video id="dollyzoom" autoplay="" controls="" muted="" loop="" playsinline="" height="100%" onloadstart="this.playbackRate=1">
+      <source src="static/videos/main/test_bin_packing2.mp4" type="video/mp4" class="figure-img img-fluid rounded">
+          </video>
+          <p style="text-align: center;">
+            <font color="#FF4500"><b>Failure</b></font>: TacSL
+          </p>
+        </div>
+      </div>
+      <div class="column">
+        <div class="content">
+          <video id="dollyzoom" autoplay="" controls="" muted="" loop="" playsinline="" height="100%" onloadstart="this.playbackRate=1">
+            <source src="static/videos/main/test_bin_packing2.mp4" type="video/mp4" class="figure-img img-fluid rounded">
+          </video>
+          <p style="text-align: center;">
+            <font color="#FF4500"><b>Failure</b></font>: FOTS
+          </p>
+        </div>
+      </div>
+      <div class="column">
+        <div class="content">
+          <video id="dollyzoom" autoplay="" controls="" muted="" loop="" playsinline="" height="100%" onloadstart="this.playbackRate=1">
+            <source src="static/videos/main/test_bin_packing2.mp4" type="video/mp4" class="figure-img img-fluid rounded">
+          </video>
+          <p style="text-align: center;">
+            <font color="#76B900"><b>Success</b></font>: HydroShear
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="columns is-centered">
+      <div class="column">
+        <div class="content">
+          <video id="dollyzoom" autoplay="" controls="" muted="" loop="" playsinline="" height="100%" onloadstart="this.playbackRate=1">
+      <source src="static/videos/main/test_bin_packing2.mp4" type="video/mp4" class="figure-img img-fluid rounded">
+          </video>
+          <p style="text-align: center;">
+            <font color="#FF4500"><b>Failure</b></font>: TacSL
+          </p>
+        </div>
+      </div>
+      <div class="column">
+        <div class="content">
+          <video id="dollyzoom" autoplay="" controls="" muted="" loop="" playsinline="" height="100%" onloadstart="this.playbackRate=1">
+            <source src="static/videos/main/test_bin_packing2.mp4" type="video/mp4" class="figure-img img-fluid rounded">
+          </video>
+          <p style="text-align: center;">
+            <font color="#FF4500"><b>Failure</b></font>: FOTS
+          </p>
+        </div>
+      </div>
+      <div class="column">
+        <div class="content">
+          <video id="dollyzoom" autoplay="" controls="" muted="" loop="" playsinline="" height="100%" onloadstart="this.playbackRate=1">
+            <source src="static/videos/main/test_bin_packing2.mp4" type="video/mp4" class="figure-img img-fluid rounded">
+          </video>
+          <p style="text-align: center;">
+            <font color="#76B900"><b>Success</b></font>: HydroShear
+          </p>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- DRAWER PULLING VIDEOS END -->
+
+
+
+
+
+<!-- Simulation Videos -->
+<div style="height: 80px;"></div> <!-- Blank space div -->
+<div class="container is-four-fifths">
+  <h2 class="title is-4">Simulation Videos on Isaac Gym</h2>
+  <div style="height: 20px;"></div> <!-- Blank space div -->
+  
+
+    <!-- Peg Insertion -->
+    <div class="container is-four-fifths">
+      <h2 class="title is-5">Task: Peg Insertion.</h2>
+      <div class="columns is-centered sync-group" style="align-items: center;">
+        <div class="column is-centered has-text-centered">
+          <div class="content">
+            <video class="sync-video" autoplay="" controls="" muted="" playsinline="" style="height: 300px; width: auto;">
+              <source src="static/videos/sim/peg_insertion/frame_video.mp4" type="video/mp4" class="figure-img img-fluid rounded">
+            </video>
+            <p style="text-align: center;">
+              <font color="#000000"><b>External View</b></font>
+            </p>
+          </div>
+        </div>
+        <div class="column is-centered has-text-centered">
+          <div class="content">
+            <video class="sync-video" autoplay="" controls="" muted="" playsinline="" style="height: 300px; width: auto;">
+              <source src="static/videos/sim/peg_insertion/hydrosoft_marker_shear_video.mp4" type="video/mp4" class="figure-img img-fluid rounded">
+            </video>
+            <p style="text-align: center;">
+              <font color="#000000"><b>Tactile View</b></font>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bin Packing -->
+  <div class="container is-four-fifths">
+    <h2 class="title is-5">Task: Bin Packing.</h2>
+    <div class="columns is-centered sync-group" style="align-items: center;">
+      <div class="column is-centered has-text-centered">
+        <div class="content">
+          <video class="sync-video" autoplay="" controls="" muted="" playsinline="" style="height: 300px; width: auto;">
+            <source src="static/videos/sim/bin_packing/frame_video.mp4" type="video/mp4" class="figure-img img-fluid rounded">
+          </video>
+          <p style="text-align: center;">
+            <font color="#000000"><b>External View</b></font>
+          </p>
+        </div>
+      </div>
+      <div class="column is-centered has-text-centered">
+        <div class="content">
+          <video class="sync-video" autoplay="" controls="" muted="" playsinline="" style="height: 300px; width: auto;">
+            <source src="static/videos/sim/bin_packing/hydrosoft_marker_shear_video.mp4" type="video/mp4" class="figure-img img-fluid rounded">
+          </video>
+          <p style="text-align: center;">
+            <font color="#000000"><b>Tactile View</b></font>
+          </p>
+        </div>
+      </div>
+  </div>
+
+
+
+<!-- FAILURE CASES -->
+<div style="height: 40px;"></div> <!-- Blank space div -->
+  <div class="container is-four-fifths">
+    <h2 class="title is-4">Failure Cases</h2>
+    <div class="columns is-centered">
+      <div class="column">
+        <div class="content">
+          <h3 class="title is-6" style="text-align: center;">Peg Insertion</h3>
+          <video id="dollyzoom" autoplay="" controls="" muted="" loop="" playsinline="" height="100%" onloadstart="this.playbackRate=1">
+	    <source src="" type="video/mp4" class="figure-img img-fluid rounded">
+          </video>
+          <p style="text-align: center;">
+            <font color="#FF4500"><b>Failure</b></font>
+          </p>
+        </div>
+      </div>
+      <div class="column">
+        <div class="content">
+          <h3 class="title is-6" style="text-align: center;">Bin Packing</h3>
+          <video id="dollyzoom" autoplay="" controls="" muted="" loop="" playsinline="" height="100%" onloadstart="this.playbackRate=1">
+	    <source src="" type="video/mp4" class="figure-img img-fluid rounded">
+          </video>
+          <p style="text-align: center;">
+            <font color="#FF4500"><b>Failure</b></font>
+          </p>
+        </div>
+      </div>
+      <div class="column">
+        <div class="content">
+          <h3 class="title is-6" style="text-align: center;">Book Shelving</h3>
+          <video id="dollyzoom" autoplay="" controls="" muted="" loop="" playsinline="" height="100%" onloadstart="this.playbackRate=1">
+	    <source src="" type="video/mp4" class="figure-img img-fluid rounded">
+          </video>
+          <p style="text-align: center;">
+            <font color="#FF4500"><b>Failure</b></font>:
+          </p>
+        </div>
+      </div>
+      <div class="column">
+        <div class="content">
+          <h3 class="title is-6" style="text-align: center;">Drawer Pulling</h3>
+          <video id="dollyzoom" autoplay="" controls="" muted="" loop="" playsinline="" height="100%" onloadstart="this.playbackRate=1">
+	    <source src="" type="video/mp4" class="figure-img img-fluid rounded">
+          </video>
+          <p style="text-align: center;">
+            <font color="#FF4500"><b>Failure</b></font>:
+          </p>
+        </div>
+      </div>
+</section>
+
+
+<!-- Cite Source Template -->
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <a class="icon-link"
+         href="./static/videos/nerfies_paper.pdf">
+        <i class="fas fa-file-pdf"></i>
+      </a>
+      <a class="icon-link" href="https://github.com/keunhong" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            Based on the open source template <a href="https://github.com/nerfies/nerfies.github.io">from here</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Find all sync groups
+    const groups = document.querySelectorAll('.sync-group');
+
+    groups.forEach(group => {
+      const videos = group.querySelectorAll('.sync-video');
+      let isSyncing = false;
+
+      if (videos.length < 2) return; // Need at least 2 videos to sync
+
+      videos.forEach(video => {
+        // Events to listen for
+        ['play', 'pause', 'seeking', 'seeked'].forEach(event => {
+          video.addEventListener(event, (e) => {
+            if (isSyncing) return;
+            isSyncing = true;
+            
+            const source = e.target;
+            
+            // Apply state to all other videos in the group
+            videos.forEach(target => {
+              if (target === source) return;
+
+              if (event === 'play' && target.paused) {
+                target.play().catch(e => console.log("Auto-play prevented:", e));
+              } else if (event === 'pause' && !target.paused) {
+                target.pause();
+              } else if (event === 'seeking' || event === 'seeked') {
+                if (Math.abs(target.currentTime - source.currentTime) > 0.1) {
+                  target.currentTime = source.currentTime;
+                }
+              }
+            });
+
+            // Small timeout to prevent infinite loops
+            setTimeout(() => { isSyncing = false; }, 50);
+          });
+        });
+      });
+    });
+  });
+</script>
+</body>
+</html>
