@@ -127,6 +127,8 @@ body {
   margin: 0;
 }
 
+
+
 .interpolation-panel {
   background: #f5f5f5;
   border-radius: 10px;
@@ -156,43 +158,21 @@ body {
 }
 
 
-.has-bg-img { 
-  background: url('/static/images/toss.jpeg')center center;
-   background-size:cover; }
-
-
-
-.overlay {
-position: absolute;
-top: 0;
-right: 0;
-bottom: 0;
-left: 0;
-background-color: rgba(0, 0, 0, 0.4); /* 40% opacity black */
-z-index: 1; /* Make sure it's behind the text */
-transition: opacity 1.0s;
-}
-  
-.hero-body,
-.hero-head,
-.hero-foot {
-  z-index: 2; /* Ensure text is above the overlay */
-  transition: opacity 1.0s;
+.triangle-down {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 10px solid #007BFF;
+  cursor: pointer;
+  transition: transform 0.3s ease;
 }
 
-
-/* Hide Mobile Version by Default */
-.results-mobile {
-  display: none;
+.triangle-down:hover {
+  border-top-color: #0056b3;
 }
 
-/* Hide Desktop Version and Show Mobile Version on Small Screens */
-@media screen and (max-width: 768px) {
-  .results-desktop {
-    display: none;
-  }
-
-  .results-mobile {
-    display: block;
-  }
+.triangle-down.open {
+  transform: rotate(180deg); /* Rotate the triangle when clicked */
 }
