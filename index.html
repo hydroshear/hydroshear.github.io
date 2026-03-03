@@ -289,12 +289,14 @@
         <h2 class="title is-2">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            Realistic tactile simulation is a promising direction for scalable visuo-tactile policy learning and sim-to-real transfer on contact-rich manipulation tasks.
-            While there has been great success in rendering vision-based tactile images of object geometries in contact, simulating realistic tactile force fields still has a large sim-to-real gap.
-            In this paper, we propose HydroShear, a Hydroelastic model for tactile shear simulation, which enables accurate force field simulation of shear and twists during sticking contacts and slippage.
-            HydroShear leverages signed distance functions (SDFs) to track the object path while in contact with the tactile sensor membrane.
-            Additionally, we model the normal deformation by introducing a dilation field with a gaussian kernel for tactile shadowing effects in the real-world.
-            We evaluate our method through comprehensive experiments by zero-shot sim-to-real transferring policies on several insertion and dense packing tasks.
+            In this paper, we address the problem of tactile sim-to-real policy transfer for contact-rich tasks. 
+            Existing methods primarily focus on vision-based sensors and emphasize image rendering quality while providing overly simplistic models of force and shear. 
+            Consequently, these models exhibit a large sim-to-real gap for many dexterous tasks. 
+            Here, we present HydroShear, a non-holonomic hydroelastic tactile simulator that advances the state-of-the-art by modeling: a) stick-slip transitions, b) path-dependent force and shear build up, and c) full SE(3) object-sensor interactions. 
+            HydroShear extends hydroelastic contact models using Signed Distance Functions (SDFs) to track the displacements of the on-surface points of an indenter during physical interaction with the sensor membrane. 
+            Our approach generates physics-based, computationally efficient force fields from arbitrary watertight geometries while remaining agnostic to the underlying physics engine. 
+            In experiments with GelSight Minis, HydroShear more faithfully reproduces real tactile shear compared to existing methods. This fidelity enables zero-shot sim-to-real transfer of reinforcement learning policies across four tasks: peg insertion, bin packing, book shelving for insertion, and drawer pulling for fine gripper control under slip. 
+            Our method achieves a 93% average success rate, outperforming policies trained on tactile images (34%) and alternative shear simulation methods (58%-61%).
           </p>
         </div>
       </div>
