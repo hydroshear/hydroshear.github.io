@@ -54,6 +54,15 @@
       background-color: #eaeaea;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
     }
+    .task-carousel,
+    .task-carousel .slider-container,
+    .task-carousel .slider {
+      width: 100% !important;
+      max-width: 100%;
+    }
+    .task-carousel .slider-item {
+      width: 100% !important;
+    }
   </style>
 </head>
 
@@ -99,7 +108,7 @@
   <div class="hero-body">
     <div class="container has-text-centered">
       <h1 class="title is-1 publication-title is-size-1-mobile" style="font-size: 8rem;">
-        HydroShear
+        🏄 HydroShear
       </h1>
       <h1 class="subtitle is-1 publication-title is-size-4-mobile" style="font-size: 4rem;">
         Hydroelastic Shear Simulation for <br class="is-hidden-mobile"> Tactile Sim-to-Real Reinforcement Learning
@@ -109,27 +118,27 @@
       </h1> -->
       <div class="publication-authors is-size-4 is-size-6-mobile" style="margin-top: 0.75rem; color: white; text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5); font-size: 3rem;">
         <span>
-          <u><a href="https://dangthanhan507.github.io/" style="font-size: 2rem; color: white !important;">An Dang*</a></u>
+          <u><a href="https://dangthanhan507.github.io/" style="font-size: 35px; color: white !important;">An Dang*<sup>†</sup></a></u>
           &nbsp;&nbsp;
-          <u><a href="https://jayjunlee.github.io/" style="font-size: 2rem; color: white !important;">Jayjun Lee*</a></u>
+          <u><a href="https://jayjunlee.github.io/" style="font-size: 35px; color: white !important;">Jayjun Lee*<sup>†</sup></a></u>
           &nbsp;&nbsp;
           <br>
-          <u><a href="https://www.mustafamukadam.com/" style="font-size: 2rem; color: white !important;">Mustafa Mukadam</a></u>
+          <u><a href="https://www.mustafamukadam.com/" style="font-size: 35px; color: white !important;">Mustafa Mukadam<sup>‡</sup></a></u>
           &nbsp;&nbsp;
-          <u><a style="font-size: 2rem; color: white !important;">X. Alice Wu</a></u>
+          <u><a style="font-size: 35px; color: white !important;">X. Alice Wu<sup>‡</sup></a></u>
           &nbsp;&nbsp;
-          <u><a href="https://bucherb.github.io/" style="font-size: 2rem; color: white !important;">Bernadette Bucher</a></u>
+          <u><a href="https://bucherb.github.io/" style="font-size: 35px; color: white !important;">Bernadette Bucher<sup>†</sup></a></u>
           &nbsp;&nbsp;
-          <!-- <br> -->
-          <u><a href="https://mnambi.github.io/" style="font-size: 2rem; color: white !important;">Manikantan Nambi</a></u>
+          <br>
+          <u><a href="https://mnambi.github.io/" style="font-size: 35px; color: white !important;">Manikantan Nambi<sup>‡</sup></a></u>
           &nbsp;&nbsp;
-          <u><a href="https://www.mmintlab.com/people/nima-fazeli/" style="font-size: 2rem; color: white !important;">Nima Fazeli</a></u>
+          <u><a href="https://www.mmintlab.com/people/nima-fazeli/" style="font-size: 35px; color: white !important;">Nima Fazeli<sup>†‡</sup></a></u>
           <br>
           <span style="font-size: 1.5rem; color: white !important;">* Equal Contribution</span>
           <br>
-          <span style="font-size: 1.5rem; color: white !important;"> University of Michigan</span>
+          <span style="font-size: 25px; color: white !important;"><sup>†</sup> University of Michigan</span>
           <br>
-          <span style="font-size: 1.5rem; color: white !important;"> Amazon Industrial Robotics (AIR)</span>
+          <span style="font-size: 25px; color: white !important;"><sup>‡</sup> Amazon Industrial Robotics (AIR)</span>
         </span>
       </div>
       <div class="column has-text-centered is-hidden-tablet">
@@ -162,13 +171,11 @@
   <div class="hero-foot is-hidden-mobile">
     <nav class="tabs is-boxed is-fullwidth is-size-5">
       <ul>
-        <li><a href="#hydroshear">Method Overview</a></li>
-        <li><a href="#highlight">Shear Results Highlights</a></li>
+        <li><a href="#results-highlight">Results Highlights</a></li>
+        <li><a href="#method-overview">Method Overview</a></li>
+        <li><a href="#shear-simulation-highlights">Shear Simulation Highlights</a></li>
+        <li><a href="#hydroshear-simulation-overview">HydroShear Simulation Overview</a></li>
         <li><a href="#real">Sim-to-Real Evaluations</a></li>
-        <!-- <li><a href="#highlight">Results Highlights</a></li> -->
-        <!-- <li><a href="#real">Real World Evaluations</a></li> -->
-        <!-- <li><a href="#app">Applications</a></li> -->
-        <!-- <li><a href="#bench">DRPBench Details</a></li> -->
       </ul>
     </nav>
   </div>
@@ -259,15 +266,92 @@
   <br>
   <br>
 
-  <!-- <div class="columns is-centered has-text-centered">
-    <div class="column is-four-fifths">
-      <h2 class="title is-3" style="color: red;">All videos play at 1x speed</h2>
-      <br>
+
+
+<div class="columns is-centered has-text-centered">
+  <div class="column is-four-fifths">
+    <h2 class="title is-3" style="color: red;">All videos play at 1x speed</h2>
+    <br>
+  </div>
+</div>
+
+  <div class="container" id="results-highlight">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+            <h3 class="title is-2" style="text-align: center; padding-bottom: 0px;"><strong>Results Highlights</strong></h3>
+            <br>
+
+            <h3 class="title is-4" style="text-align: center; padding-bottom: 10px;">Peg Insertion</h3>
+            <div class="columns">
+              <div class="column">
+                <video class="center" playsinline autoplay loop controls muted src="./static/videos/highlight/peginsertion_0059.mp4" width="100%" style="border-radius:10px;"></video>
+              </div>
+              <div class="column">
+                <video class="center" playsinline autoplay loop controls muted src="./static/videos/highlight/peginsertion_0060.mp4" width="100%" style="border-radius:10px;"></video>
+              </div>
+              <div class="column">
+                <video class="center" playsinline autoplay loop controls muted src="./static/videos/highlight/peginsertion_0061.mp4" width="100%" style="border-radius:10px;"></video>
+              </div>
+            </div>
+
+            <h3 class="title is-4" style="text-align: center; padding-bottom: 10px;">Bin Packing</h3>
+            <div class="columns">
+              <div class="column">
+                <video class="center" playsinline autoplay loop controls muted src="./static/videos/highlight/binpacking_0070.mp4" width="100%" style="border-radius:10px;"></video>
+              </div>
+              <div class="column">
+                <video class="center" playsinline autoplay loop controls muted src="./static/videos/highlight/binpacking_0071.mp4" width="100%" style="border-radius:10px;"></video>
+              </div>
+              <div class="column">
+                <video class="center" playsinline autoplay loop controls muted src="./static/videos/highlight/binpacking_0072.mp4" width="100%" style="border-radius:10px;"></video>
+              </div>
+              <div class="column">
+                <video class="center" playsinline autoplay loop controls muted src="./static/videos/highlight/binpacking_0073.mp4" width="100%" style="border-radius:10px;"></video>
+              </div>
+            </div>
+
+            <h3 class="title is-4" style="text-align: center; padding-bottom: 10px;">Book Shelving</h3>
+            <div class="columns">
+              <div class="column">
+                <video class="center" playsinline autoplay loop controls muted src="./static/videos/highlight/bookshelving_9990.mp4" width="100%" style="border-radius:10px;"></video>
+              </div>
+              <div class="column">
+                <video class="center" playsinline autoplay loop controls muted src="./static/videos/highlight/bookshelving_9991.mp4" width="100%" style="border-radius:10px;"></video>
+              </div>
+              <div class="column">
+                <video class="center" playsinline autoplay loop controls muted src="./static/videos/highlight/bookshelving_9992.mp4" width="100%" style="border-radius:10px;"></video>
+              </div>
+              <div class="column">
+                <video class="center" playsinline autoplay loop controls muted src="./static/videos/highlight/bookshelving_9993.mp4" width="100%" style="border-radius:10px;"></video>
+              </div>
+            </div>
+            <div class="columns">
+              <div class="column">
+                <video class="center" playsinline autoplay loop controls muted src="./static/videos/highlight/bookshelving_9995.mp4" width="100%" style="border-radius:10px;"></video>
+              </div>
+              <div class="column">
+                <video class="center" playsinline autoplay loop controls muted src="./static/videos/highlight/bookshelving_9996.mp4" width="100%" style="border-radius:10px;"></video>
+              </div>
+              <div class="column">
+                <video class="center" playsinline autoplay loop controls muted src="./static/videos/highlight/bookshelving_9997.mp4" width="100%" style="border-radius:10px;"></video>
+              </div>
+            </div>
+
+            <h3 class="title is-4" style="text-align: center; padding-bottom: 10px;">Drawer Pulling</h3>
+            <div class="columns">
+              <div class="column">
+                <video class="center" playsinline autoplay loop controls muted src="./static/videos/highlight/drawerpulling_0026.mp4" width="100%" style="border-radius:10px;"></video>
+              </div>
+              <div class="column">
+                <video class="center" playsinline autoplay loop controls muted src="./static/videos/highlight/drawerpulling_0027.mp4" width="100%" style="border-radius:10px;"></video>
+              </div>
+            </div>
+      </div>
     </div>
-  </div> -->
+  </div>
 
 <section>
-  <div class="container" id="hydroshear">
+  <div class="container" id="method-overview">
     <div class="columns is-centered">
       <div class="column is-full-width">
         <br>
@@ -294,9 +378,71 @@
           <br>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+</section>
 
+<section class="section" id="shear-simulation-highlights"> 
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h1 class="title is-2" style="text-align: center; padding-bottom: 10px;">Shear Results Highlights</h1>
+      <div class="column is-full-width">
+            <h3 class="title is-3" style="text-align: center; padding-bottom: 10px;"><strong>Shear from Different Geometries</strong></h3>
+            <div class="columns">
+              <div class="column">
+                <video class="center" playsinline autoplay loop controls muted src="./static/videos/sphere_visuals/basic_sphere.mp4" width="100%" style="border-radius:10px;"></video>
+                <p style="text-align: center; font-size: 18px">Sphere</p>
+              </div>
+              <div class="column">
+                <video class="center" playsinline autoplay loop controls muted src="./static/videos/sphere_visuals/complex_cow.mp4" width="100%" style="border-radius:10px;"></video>
+                <p style="text-align: center; font-size: 18px">Cow (multi-contact patches)</p>
+              </div>
+              <div class="column">
+                <video class="center" playsinline autoplay loop controls muted src="./static/videos/sphere_visuals/complex_torus.mp4" width="100%" style="border-radius:10px;"></video>
+                <p style="text-align: center; font-size: 18px">Ring Torus</p>
+              </div>
+            </div>
+            <br>
+      </div>
+
+      <div class="columns is-centered">
+      <div class="column is-full-width">
+            <h3 class="title is-3" style="text-align: center; padding-bottom: 10px;"><strong>Translational Shear and Slippage</strong></h3>
+            <div class="columns">
+              <div class="column">
+                <video class="center" playsinline autoplay loop controls muted src="./static/videos/sphere_visuals/sphere_slip_frontview.mp4" width="100%" style="border-radius:10px;"></video>
+                <p style="text-align: center; font-size: 18px">Front</p>
+              </div>
+              <div class="column">
+                <video class="center" playsinline autoplay loop controls muted src="./static/videos/sphere_visuals/sphere_slip_sideview.mp4" width="100%" style="border-radius:10px;"></video>
+                <p style="text-align: center; font-size: 18px">Side</p>
+              </div>
+            </div>
+      </div>
+        <div class="column is-full-width">
+            <h3 class="title is-3" style="text-align: center; padding-bottom: 10px;"><strong>Roll-induced Shear and Slippage</strong></h3>
+            <div class="columns">
+              <div class="column">
+                <video class="center" playsinline autoplay loop controls muted src="./static/videos/sphere_visuals/sphere_roll.mp4" width="100%" style="border-radius:10px;"></video>
+                <p style="text-align: center; font-size: 18px">Front</p>
+              </div>
+              <div class="column">
+                <video class="center" playsinline autoplay loop controls muted src="./static/videos/sphere_visuals/sphere_roll_sideview.mp4" width="100%" style="border-radius:10px;"></video>
+                <p style="text-align: center; font-size: 18px">Side</p>
+              </div>
+            </div>
+      </div>
+</section>
+
+<section id="hydroshear-simulation-overview">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
         <div class="columns is-centered">
           <div class="column is-four-fifths" style="text-align: center;">
+            <h3 class="title is-3" style="padding-bottom: 10px;"><strong>HydroShear Simulation Overview</strong></h3>
             <img src="./static/images/hydroshear_main.png" alt="Image description" width="100%">
             <br>
             <br>
@@ -317,108 +463,9 @@
           <br>
           </div>
         </div>
-</section>
-
-
-  <!-- <div class="container" id="highlight">
-    <div class="columns is-centered">
-      <div class="column is-full-width">
-            <h3 class="title is-2" style="text-align: center; padding-bottom: 0px;"><strong>Results Highlights</strong></h3>
-            <h4 style="text-align: center; font-size: 20px; padding-bottom: 20px">Our policy operates on point cloud observations to reach desired goal poses, with goals visualized as RGB frame axes in the videos below.</h4>
-            <div class="columns">
-              <div class="column">
-                <video class="center" playsinline autoplay loop controls muted src="./static/videos/highlight/cabinet_combined.mp4" width="100%" style="border-radius:10px;"></video>
-                <p style="text-align: center; font-size: 18px">Cabinet Rearrangement</p>
-              </div>
-              <div class="column">
-                <video class="center" playsinline autoplay loop controls muted src="./static/videos/highlight/cooking.mp4" width="100%" style="border-radius:10px;"></video>
-                <p style="text-align: center; font-size: 18px">Collaborative Cooking</p>
-              </div>
-            </div>
-            <div class="columns">
-              <div class="column">
-                <video class="center" playsinline autoplay loop controls muted src="./static/videos/highlight/fridge.mp4" width="100%" style="border-radius:10px;"></video>
-                <p style="text-align: center; font-size: 18px">Defrosting Food</p>
-              </div>
-              <div class="column">
-                <video class="center" playsinline autoplay loop controls muted src="./static/videos/highlight/drawer_combined.mp4" width="100%" style="border-radius:10px;"></video>
-                <p style="text-align: center; font-size: 18px">Drawer Rearrangement</p>
-              </div>
-              <div class="column">
-                <video class="center" playsinline autoplay loop controls muted src="./static/videos/highlight/kitchen.mp4" width="100%" style="border-radius:10px;"></video>
-                <p style="text-align: center; font-size: 18px">Kitchen Cleanup</p>
-              </div>
-            </div>
-            <div class="columns">
-              <div class="column">
-                <video class="center" playsinline autoplay loop controls muted src="./static/videos/highlight/human_combined.mp4" width="100%" style="border-radius:10px;"></video>
-                <p style="text-align: center; font-size: 18px">Safe Human-Robot Interaction</p>
-              </div>
-              <div class="column">
-                <video class="center" playsinline autoplay loop controls muted src="./static/videos/highlight/trash.mp4" width="100%" style="border-radius:10px;"></video>
-                <p style="text-align: center; font-size: 18px">Refuse Disposal</p>
-              </div>
-              <div class="column">
-                <video class="center" playsinline autoplay loop controls muted src="./static/videos/highlight/sink.mp4" width="100%" style="border-radius:10px;"></video>
-                <p style="text-align: center; font-size: 18px">Washing Dishes</p>
-              </div>
-            </div>
       </div>
     </div>
-  </div> -->
-</section>
-
-<section class="section" id="highlight"> 
-  <div class="container" id="hydroshear">
-    <div class="columns is-centered">
-      <div class="column is-full-width">
-        <h1 class="title is-2" style="text-align: center; padding-bottom: 10px;">Shear Results Highlights</h1>
-      <div class="column is-full-width">
-            <h3 class="title is-3" style="text-align: center; padding-bottom: 10px;"><strong>Shear on Different Geometry</strong></h3>
-            <div class="columns">
-              <div class="column">
-                <video class="center" playsinline autoplay loop controls muted src="./static/videos/sphere_visuals/basic_sphere.mp4" width="100%" style="border-radius:10px;"></video>
-                <p style="text-align: center; font-size: 18px">Sphere</p>
-              </div>
-              <div class="column">
-                <video class="center" playsinline autoplay loop controls muted src="./static/videos/sphere_visuals/complex_cow.mp4" width="100%" style="border-radius:10px;"></video>
-                <p style="text-align: center; font-size: 18px">Cow</p>
-              </div>
-              <div class="column">
-                <video class="center" playsinline autoplay loop controls muted src="./static/videos/sphere_visuals/complex_torus.mp4" width="100%" style="border-radius:10px;"></video>
-                <p style="text-align: center; font-size: 18px">Ring Torus</p>
-              </div>
-            </div>
-            <br>
-      </div>
-
-      <div class="columns is-centered">
-      <div class="column is-full-width">
-            <h3 class="title is-3" style="text-align: center; padding-bottom: 10px;"><strong>Slippage Shear</strong></h3>
-            <div class="columns">
-              <div class="column">
-                <video class="center" playsinline autoplay loop controls muted src="./static/videos/sphere_visuals/sphere_slip_frontview.mp4" width="100%" style="border-radius:10px;"></video>
-                <p style="text-align: center; font-size: 18px">Front</p>
-              </div>
-              <div class="column">
-                <video class="center" playsinline autoplay loop controls muted src="./static/videos/sphere_visuals/sphere_slip_sideview.mp4" width="100%" style="border-radius:10px;"></video>
-                <p style="text-align: center; font-size: 18px">Side</p>
-              </div>
-            </div>
-      </div>
-        <div class="column is-full-width">
-            <h3 class="title is-3" style="text-align: center; padding-bottom: 10px;"><strong>Roll-induced Shear</strong></h3>
-            <div class="columns">
-              <div class="column">
-                <video class="center" playsinline autoplay loop controls muted src="./static/videos/sphere_visuals/sphere_roll.mp4" width="100%" style="border-radius:10px;"></video>
-                <p style="text-align: center; font-size: 18px">Front</p>
-              </div>
-              <div class="column">
-                <video class="center" playsinline autoplay loop controls muted src="./static/videos/sphere_visuals/sphere_roll_sideview.mp4" width="100%" style="border-radius:10px;"></video>
-                <p style="text-align: center; font-size: 18px">Side</p>
-              </div>
-            </div>
-      </div>
+  </div>
 </section>
 
 <section class="section" id="real">
@@ -429,29 +476,6 @@
             <h4 style="text-align: center; font-size: 20px; padding-bottom: 20px">
               We evaluate HydroShear's ability to zero-shot sim-to-real transfer RL policies across 4 tasks. We compare HydroShear's performance against 4 baselines: TacSL's tactile RGB simulator grayscaled, TacSL's tactile shear simulator, FOTS's tactile shear simulator, and our parallelized reimplementation of the FOTS tactile shear simulator.
             </h4>
-      </div>
-    </div>
-    <div class="columns is-centered">
-      <div class="column is-four-fifths" style="text-align: center;">
-        <img src="./static/images/table.png" alt="Image description" width="100%">
-        <br>
-        <br>
-        <div class="columns is-centered">
-          <div class="column">
-            <div class="content has-text-justified">
-              <!-- <p>
-                  \textbf{Zero-shot Sim-to-Real Policy Evaluation.}
-                  We test 5 different policies that is trained with different tactile simulation frameworks for each task: 
-                  (1) TacSL tactile grayscale image;  
-                  (2) TacSL tactile normalized shear; 
-                  (3) Original FOTS tactile shear with \textit{our} parallelization; 
-                  (4) Our \textit{reimplemention} of FOTS with improvements; 
-                  (5) HydroShear tactile shear.
-              </p> -->
-            </div>
-          </div>
-        </div>
-      <br>
       </div>
     </div>
   </div>
@@ -484,253 +508,235 @@
         <div class="column is-full-width">
             <h3 class="title is-1" style="text-align: center; padding-bottom: 10px;"><strong>Real-World Rollouts</strong></h3>
       </div>
-    
 
-    <div id="results-carousel" class="carousel results-carousel" data-slides-to-show="1">
-      
-      <!-- PegInsertion -->
-      <div class="item item-model1">
-        <h3 class="title is-3 has-text-centered" style="margin-top: 0.5rem; margin-bottom: 0.5rem;">Peg Insertion</h3>
-        <div class="columns is-centered sync-group" style="align-items: center; margin: 0 1rem;">
-          
-          <!-- Vision Left (Cropped) -->
-          <div class="column is-one-quarter has-text-centered">
-            <div style="width: 100%; height: auto; aspect-ratio: 16/9; overflow: hidden; border-radius: 10px;">
-                <video class="sync-video" autoplay="" controls="" muted="" playsinline="" style="width: 100%; height: 100%; object-fit: cover; object-position: 0% 50%;">
-                  <source src="./static/videos/real_rollouts/peginsertion/hydroshear_vision.mp4" type="video/mp4">
-                </video>
+      <!-- Peg Insertion -->
+      <div class="column is-full-width">
+            <h3 class="title is-4" style="text-align: center; padding-bottom: 10px;">Peg Insertion</h3>
+            <div class="carousel task-carousel" data-slides-to-show="1">
+              <div class="item">
+                <div class="columns" style="margin: 0;">
+                  <div class="column">
+                    <video class="center carousel-video" playsinline loop controls muted preload="metadata" src="./static/videos/real_rollouts/peginsertion/hydroshear_vision.mp4" width="100%" style="border-radius:10px;"></video>
+                    <video class="center carousel-video" playsinline loop controls muted preload="metadata" src="./static/videos/real_rollouts/peginsertion/hydroshear_tactile.mp4" width="100%" style="border-radius:10px;"></video>
+                    <p style="text-align: center; font-size: 18px">HydroShear</p>
+                  </div>
+                  <div class="column">
+                    <video class="center carousel-video" playsinline loop controls muted preload="metadata" src="./static/videos/real_rollouts/peginsertion/fots_vision.mp4" width="100%" style="border-radius:10px;"></video>
+                    <video class="center carousel-video" playsinline loop controls muted preload="metadata" src="./static/videos/real_rollouts/peginsertion/fots_tactile.mp4" width="100%" style="border-radius:10px;"></video>
+                    <p style="text-align: center; font-size: 18px">FOTS</p>
+                  </div>
+                  <div class="column">
+                    <video class="center carousel-video" playsinline loop controls muted preload="metadata" src="./static/videos/real_rollouts/peginsertion/tacslshear_vision.mp4" width="100%" style="border-radius:10px;"></video>
+                    <video class="center carousel-video" playsinline loop controls muted preload="metadata" src="./static/videos/real_rollouts/peginsertion/tacslshear_tactile.mp4" width="100%" style="border-radius:10px;"></video>
+                    <p style="text-align: center; font-size: 18px">TacSL Shear</p>
+                  </div>
+                  <div class="column">
+                    <video class="center carousel-video" playsinline loop controls muted preload="metadata" src="./static/videos/real_rollouts/peginsertion/tacslgray_vision.mp4" width="100%" style="border-radius:10px;"></video>
+                    <video class="center carousel-video" playsinline loop controls muted preload="metadata" src="./static/videos/real_rollouts/peginsertion/tacslgray_tactile.mp4" width="100%" style="border-radius:10px;"></video>
+                    <p style="text-align: center; font-size: 18px">TacSL Gray</p>
+                  </div>
+                </div>
+              </div>
+              <div class="item">
+                <div class="columns" style="margin: 0;">
+                  <div class="column">
+                    <video class="center carousel-video" playsinline loop controls muted preload="metadata" src="./static/videos/real_rollouts/peginsertion/hydroshear_vision.mp4" width="100%" style="border-radius:10px;"></video>
+                    <video class="center carousel-video" playsinline loop controls muted preload="metadata" src="./static/videos/real_rollouts/peginsertion/hydroshear_tactile.mp4" width="100%" style="border-radius:10px;"></video>
+                    <p style="text-align: center; font-size: 18px">HydroShear</p>
+                  </div>
+                  <div class="column">
+                    <video class="center carousel-video" playsinline loop controls muted preload="metadata" src="./static/videos/real_rollouts/peginsertion/fots_vision.mp4" width="100%" style="border-radius:10px;"></video>
+                    <video class="center carousel-video" playsinline loop controls muted preload="metadata" src="./static/videos/real_rollouts/peginsertion/fots_tactile.mp4" width="100%" style="border-radius:10px;"></video>
+                    <p style="text-align: center; font-size: 18px">FOTS</p>
+                  </div>
+                  <div class="column">
+                    <video class="center carousel-video" playsinline loop controls muted preload="metadata" src="./static/videos/real_rollouts/peginsertion/tacslshear_vision.mp4" width="100%" style="border-radius:10px;"></video>
+                    <video class="center carousel-video" playsinline loop controls muted preload="metadata" src="./static/videos/real_rollouts/peginsertion/tacslshear_tactile.mp4" width="100%" style="border-radius:10px;"></video>
+                    <p style="text-align: center; font-size: 18px">TacSL Shear</p>
+                  </div>
+                  <div class="column">
+                    <video class="center carousel-video" playsinline loop controls muted preload="metadata" src="./static/videos/real_rollouts/peginsertion/tacslgray_vision.mp4" width="100%" style="border-radius:10px;"></video>
+                    <video class="center carousel-video" playsinline loop controls muted preload="metadata" src="./static/videos/real_rollouts/peginsertion/tacslgray_tactile.mp4" width="100%" style="border-radius:10px;"></video>
+                    <p style="text-align: center; font-size: 18px">TacSL Gray</p>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div style="width: 100%; height: auto; aspect-ratio: 16/9; overflow: hidden; border-radius: 10px;">
-                <video class="sync-video" autoplay="" controls="" muted="" playsinline="" style="width: 100%; height: 100%; object-fit: cover; object-position: 0% 50%;">
-                  <source src="./static/videos/real_rollouts/peginsertion/hydroshear_tactile.mp4" type="video/mp4">
-                </video>
-            </div>
-          </div>
-
-          <div class="column is-one-quarter has-text-centered">
-            <div style="width: 100%; height: auto; aspect-ratio: 16/9; overflow: hidden; border-radius: 10px;">
-                <video class="sync-video" autoplay="" controls="" muted="" playsinline="" style="width: 100%; height: 100%; object-fit: cover; object-position: 0% 50%;">
-                  <source src="./static/videos/real_rollouts/peginsertion/fots_vision.mp4" type="video/mp4">
-                </video>
-            </div>
-            <div style="width: 100%; height: auto; aspect-ratio: 16/9; overflow: hidden; border-radius: 10px;">
-                <video class="sync-video" autoplay="" controls="" muted="" playsinline="" style="width: 100%; height: 100%; object-fit: cover; object-position: 0% 50%;">
-                  <source src="./static/videos/real_rollouts/peginsertion/fots_tactile.mp4" type="video/mp4">
-                </video>
-            </div>
-          </div>
-
-          <div class="column is-one-quarter has-text-centered">
-            <div style="width: 100%; height: auto; aspect-ratio: 16/9; overflow: hidden; border-radius: 10px;">
-                <video class="sync-video" autoplay="" controls="" muted="" playsinline="" style="width: 100%; height: 100%; object-fit: cover; object-position: 0% 50%;">
-                  <source src="./static/videos/real_rollouts/peginsertion/tacslshear_vision.mp4" type="video/mp4">
-                </video>
-            </div>
-            <div style="width: 100%; height: auto; aspect-ratio: 16/9; overflow: hidden; border-radius: 10px;">
-                <video class="sync-video" autoplay="" controls="" muted="" playsinline="" style="width: 100%; height: 100%; object-fit: cover; object-position: 0% 50%;">
-                  <source src="./static/videos/real_rollouts/peginsertion/tacslshear_tactile.mp4" type="video/mp4">
-                </video>
-            </div>
-          </div>
-
-
-          <div class="column is-one-quarter has-text-centered">
-            <div style="width: 100%; height: auto; aspect-ratio: 16/9; overflow: hidden; border-radius: 10px;">
-                <video class="sync-video" autoplay="" controls="" muted="" playsinline="" style="width: 100%; height: 100%; object-fit: cover; object-position: 0% 50%;">
-                  <source src="./static/videos/real_rollouts/peginsertion/tacslgray_vision.mp4" type="video/mp4">
-                </video>
-            </div>
-            <div style="width: 100%; height: auto; aspect-ratio: 16/9; overflow: hidden; border-radius: 10px;">
-                <video class="sync-video" autoplay="" controls="" muted="" playsinline="" style="width: 100%; height: 100%; object-fit: cover; object-position: 0% 50%;">
-                  <source src="./static/videos/real_rollouts/peginsertion/tacslgray_tactile.mp4" type="video/mp4">
-                </video>
-            </div>
-          </div>
-
-        </div>
       </div>
 
-      <!-- BinPacking -->
-      <div class="item item-model2">
-        <h3 class="title is-3 has-text-centered" style="margin-top: 0.5rem; margin-bottom: 0.5rem;">Bin Packing</h3>
-        <div class="columns is-centered sync-group" style="align-items: center; margin: 0 1rem;">
-          
-          <!-- Vision Left (Cropped) -->
-          <div class="column is-one-quarter has-text-centered">
-            <div style="width: 100%; height: auto; aspect-ratio: 16/9; overflow: hidden; border-radius: 10px;">
-                <video class="sync-video" autoplay="" controls="" muted="" playsinline="" style="width: 100%; height: 100%; object-fit: cover; object-position: 0% 50%;">
-                  <source src="./static/videos/real_rollouts/binpacking/hydroshear_vision.mp4" type="video/mp4">
-                </video>
+      <!-- Bin Packing -->
+      <div class="column is-full-width">
+            <h3 class="title is-4" style="text-align: center; padding-bottom: 10px;">Bin Packing</h3>
+            <div class="carousel task-carousel" data-slides-to-show="1">
+              <div class="item">
+                <div class="columns" style="margin: 0;">
+                  <div class="column">
+                    <video class="center carousel-video" playsinline loop controls muted preload="metadata" src="./static/videos/real_rollouts/binpacking/hydroshear_vision.mp4" width="100%" style="border-radius:10px;"></video>
+                    <video class="center carousel-video" playsinline loop controls muted preload="metadata" src="./static/videos/real_rollouts/binpacking/hydroshear_tactile.mp4" width="100%" style="border-radius:10px;"></video>
+                    <p style="text-align: center; font-size: 18px">HydroShear</p>
+                  </div>
+                  <div class="column">
+                    <video class="center carousel-video" playsinline loop controls muted preload="metadata" src="./static/videos/real_rollouts/binpacking/fots_vision.mp4" width="100%" style="border-radius:10px;"></video>
+                    <video class="center carousel-video" playsinline loop controls muted preload="metadata" src="./static/videos/real_rollouts/binpacking/fots_tactile.mp4" width="100%" style="border-radius:10px;"></video>
+                    <p style="text-align: center; font-size: 18px">FOTS</p>
+                  </div>
+                  <div class="column">
+                    <video class="center carousel-video" playsinline loop controls muted preload="metadata" src="./static/videos/real_rollouts/binpacking/tacslshear_vision.mp4" width="100%" style="border-radius:10px;"></video>
+                    <video class="center carousel-video" playsinline loop controls muted preload="metadata" src="./static/videos/real_rollouts/binpacking/tacslshear_tactile.mp4" width="100%" style="border-radius:10px;"></video>
+                    <p style="text-align: center; font-size: 18px">TacSL Shear</p>
+                  </div>
+                  <div class="column">
+                    <video class="center carousel-video" playsinline loop controls muted preload="metadata" src="./static/videos/real_rollouts/binpacking/tacslgray_vision.mp4" width="100%" style="border-radius:10px;"></video>
+                    <video class="center carousel-video" playsinline loop controls muted preload="metadata" src="./static/videos/real_rollouts/binpacking/tacslgray_tactile.mp4" width="100%" style="border-radius:10px;"></video>
+                    <p style="text-align: center; font-size: 18px">TacSL Gray</p>
+                  </div>
+                </div>
+              </div>
+              <div class="item">
+                <div class="columns" style="margin: 0;">
+                  <div class="column">
+                    <video class="center carousel-video" playsinline loop controls muted preload="metadata" src="./static/videos/real_rollouts/binpacking/hydroshear_vision.mp4" width="100%" style="border-radius:10px;"></video>
+                    <video class="center carousel-video" playsinline loop controls muted preload="metadata" src="./static/videos/real_rollouts/binpacking/hydroshear_tactile.mp4" width="100%" style="border-radius:10px;"></video>
+                    <p style="text-align: center; font-size: 18px">HydroShear</p>
+                  </div>
+                  <div class="column">
+                    <video class="center carousel-video" playsinline loop controls muted preload="metadata" src="./static/videos/real_rollouts/binpacking/fots_vision.mp4" width="100%" style="border-radius:10px;"></video>
+                    <video class="center carousel-video" playsinline loop controls muted preload="metadata" src="./static/videos/real_rollouts/binpacking/fots_tactile.mp4" width="100%" style="border-radius:10px;"></video>
+                    <p style="text-align: center; font-size: 18px">FOTS</p>
+                  </div>
+                  <div class="column">
+                    <video class="center carousel-video" playsinline loop controls muted preload="metadata" src="./static/videos/real_rollouts/binpacking/tacslshear_vision.mp4" width="100%" style="border-radius:10px;"></video>
+                    <video class="center carousel-video" playsinline loop controls muted preload="metadata" src="./static/videos/real_rollouts/binpacking/tacslshear_tactile.mp4" width="100%" style="border-radius:10px;"></video>
+                    <p style="text-align: center; font-size: 18px">TacSL Shear</p>
+                  </div>
+                  <div class="column">
+                    <video class="center carousel-video" playsinline loop controls muted preload="metadata" src="./static/videos/real_rollouts/binpacking/tacslgray_vision.mp4" width="100%" style="border-radius:10px;"></video>
+                    <video class="center carousel-video" playsinline loop controls muted preload="metadata" src="./static/videos/real_rollouts/binpacking/tacslgray_tactile.mp4" width="100%" style="border-radius:10px;"></video>
+                    <p style="text-align: center; font-size: 18px">TacSL Gray</p>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div style="width: 100%; height: auto; aspect-ratio: 16/9; overflow: hidden; border-radius: 10px;">
-                <video class="sync-video" autoplay="" controls="" muted="" playsinline="" style="width: 100%; height: 100%; object-fit: cover; object-position: 0% 50%;">
-                  <source src="./static/videos/real_rollouts/binpacking/hydroshear_tactile.mp4" type="video/mp4">
-                </video>
-            </div>
-          </div>
-
-          <div class="column is-one-quarter has-text-centered">
-            <div style="width: 100%; height: auto; aspect-ratio: 16/9; overflow: hidden; border-radius: 10px;">
-                <video class="sync-video" autoplay="" controls="" muted="" playsinline="" style="width: 100%; height: 100%; object-fit: cover; object-position: 0% 50%;">
-                  <source src="./static/videos/real_rollouts/binpacking/fots_vision.mp4" type="video/mp4">
-                </video>
-            </div>
-            <div style="width: 100%; height: auto; aspect-ratio: 16/9; overflow: hidden; border-radius: 10px;">
-                <video class="sync-video" autoplay="" controls="" muted="" playsinline="" style="width: 100%; height: 100%; object-fit: cover; object-position: 0% 50%;">
-                  <source src="./static/videos/real_rollouts/binpacking/fots_tactile.mp4" type="video/mp4">
-                </video>
-            </div>
-          </div>
-
-          <div class="column is-one-quarter has-text-centered">
-            <div style="width: 100%; height: auto; aspect-ratio: 16/9; overflow: hidden; border-radius: 10px;">
-                <video class="sync-video" autoplay="" controls="" muted="" playsinline="" style="width: 100%; height: 100%; object-fit: cover; object-position: 0% 50%;">
-                  <source src="./static/videos/real_rollouts/binpacking/tacslshear_vision.mp4" type="video/mp4">
-                </video>
-            </div>
-            <div style="width: 100%; height: auto; aspect-ratio: 16/9; overflow: hidden; border-radius: 10px;">
-                <video class="sync-video" autoplay="" controls="" muted="" playsinline="" style="width: 100%; height: 100%; object-fit: cover; object-position: 0% 50%;">
-                  <source src="./static/videos/real_rollouts/binpacking/tacslshear_tactile.mp4" type="video/mp4">
-                </video>
-            </div>
-          </div>
-
-          <div class="column is-one-quarter has-text-centered">
-            <div style="width: 100%; height: auto; aspect-ratio: 16/9; overflow: hidden; border-radius: 10px;">
-                <video class="sync-video" autoplay="" controls="" muted="" playsinline="" style="width: 100%; height: 100%; object-fit: cover; object-position: 0% 50%;">
-                  <source src="./static/videos/real_rollouts/binpacking/tacslgray_vision.mp4" type="video/mp4">
-                </video>
-            </div>
-            <div style="width: 100%; height: auto; aspect-ratio: 16/9; overflow: hidden; border-radius: 10px;">
-                <video class="sync-video" autoplay="" controls="" muted="" playsinline="" style="width: 100%; height: 100%; object-fit: cover; object-position: 0% 50%;">
-                  <source src="./static/videos/real_rollouts/binpacking/tacslgray_tactile.mp4" type="video/mp4">
-                </video>
-            </div>
-          </div>
-
-        </div>
       </div>
 
-      <!-- BookShelving -->
-      <div class="item item-model3">
-        <h3 class="title is-3 has-text-centered" style="margin-top: 0.5rem; margin-bottom: 0.5rem;">Book Shelving</h3>
-        <div class="columns is-centered sync-group" style="align-items: center; margin: 0 1rem;">
-          
-          <!-- Vision Left (Cropped) -->
-          <div class="column is-one-quarter has-text-centered">
-            <div style="width: 100%; height: auto; aspect-ratio: 16/9; overflow: hidden; border-radius: 10px;">
-                <video class="sync-video" autoplay="" controls="" muted="" playsinline="" style="width: 100%; height: 100%; object-fit: cover; object-position: 0% 50%;">
-                  <source src="./static/videos/real_rollouts/bookshelving24/hydroshear_vision.mp4" type="video/mp4">
-                </video>
+      <!-- Book Shelving -->
+      <div class="column is-full-width">
+            <h3 class="title is-4" style="text-align: center; padding-bottom: 10px;">Book Shelving</h3>
+            <div class="carousel task-carousel" data-slides-to-show="1">
+              <div class="item">
+                <div class="columns" style="margin: 0;">
+                  <div class="column">
+                    <video class="center carousel-video" playsinline loop controls muted preload="metadata" src="./static/videos/real_rollouts/bookshelving24/hydroshear_vision.mp4" width="100%" style="border-radius:10px;"></video>
+                    <video class="center carousel-video" playsinline loop controls muted preload="metadata" src="./static/videos/real_rollouts/bookshelving24/hydroshear_tactile.mp4" width="100%" style="border-radius:10px;"></video>
+                    <p style="text-align: center; font-size: 18px">HydroShear</p>
+                  </div>
+                  <div class="column">
+                    <video class="center carousel-video" playsinline loop controls muted preload="metadata" src="./static/videos/real_rollouts/bookshelving24/fots_vision.mp4" width="100%" style="border-radius:10px;"></video>
+                    <video class="center carousel-video" playsinline loop controls muted preload="metadata" src="./static/videos/real_rollouts/bookshelving24/fots_tactile.mp4" width="100%" style="border-radius:10px;"></video>
+                    <p style="text-align: center; font-size: 18px">FOTS</p>
+                  </div>
+                  <div class="column">
+                    <video class="center carousel-video" playsinline loop controls muted preload="metadata" src="./static/videos/real_rollouts/bookshelving24/tacslshear_vision.mp4" width="100%" style="border-radius:10px;"></video>
+                    <video class="center carousel-video" playsinline loop controls muted preload="metadata" src="./static/videos/real_rollouts/bookshelving24/tacslshear_tactile.mp4" width="100%" style="border-radius:10px;"></video>
+                    <p style="text-align: center; font-size: 18px">TacSL Shear</p>
+                  </div>
+                  <div class="column">
+                    <video class="center carousel-video" playsinline loop controls muted preload="metadata" src="./static/videos/real_rollouts/bookshelving24/tacslgray_vision.mp4" width="100%" style="border-radius:10px;"></video>
+                    <video class="center carousel-video" playsinline loop controls muted preload="metadata" src="./static/videos/real_rollouts/bookshelving24/tacslgray_tactile.mp4" width="100%" style="border-radius:10px;"></video>
+                    <p style="text-align: center; font-size: 18px">TacSL Gray</p>
+                  </div>
+                </div>
+              </div>
+              <div class="item">
+                <div class="columns" style="margin: 0;">
+                  <div class="column">
+                    <video class="center carousel-video" playsinline loop controls muted preload="metadata" src="./static/videos/real_rollouts/bookshelving24/hydroshear_vision.mp4" width="100%" style="border-radius:10px;"></video>
+                    <video class="center carousel-video" playsinline loop controls muted preload="metadata" src="./static/videos/real_rollouts/bookshelving24/hydroshear_tactile.mp4" width="100%" style="border-radius:10px;"></video>
+                    <p style="text-align: center; font-size: 18px">HydroShear</p>
+                  </div>
+                  <div class="column">
+                    <video class="center carousel-video" playsinline loop controls muted preload="metadata" src="./static/videos/real_rollouts/bookshelving24/fots_vision.mp4" width="100%" style="border-radius:10px;"></video>
+                    <video class="center carousel-video" playsinline loop controls muted preload="metadata" src="./static/videos/real_rollouts/bookshelving24/fots_tactile.mp4" width="100%" style="border-radius:10px;"></video>
+                    <p style="text-align: center; font-size: 18px">FOTS</p>
+                  </div>
+                  <div class="column">
+                    <video class="center carousel-video" playsinline loop controls muted preload="metadata" src="./static/videos/real_rollouts/bookshelving24/tacslshear_vision.mp4" width="100%" style="border-radius:10px;"></video>
+                    <video class="center carousel-video" playsinline loop controls muted preload="metadata" src="./static/videos/real_rollouts/bookshelving24/tacslshear_tactile.mp4" width="100%" style="border-radius:10px;"></video>
+                    <p style="text-align: center; font-size: 18px">TacSL Shear</p>
+                  </div>
+                  <div class="column">
+                    <video class="center carousel-video" playsinline loop controls muted preload="metadata" src="./static/videos/real_rollouts/bookshelving24/tacslgray_vision.mp4" width="100%" style="border-radius:10px;"></video>
+                    <video class="center carousel-video" playsinline loop controls muted preload="metadata" src="./static/videos/real_rollouts/bookshelving24/tacslgray_tactile.mp4" width="100%" style="border-radius:10px;"></video>
+                    <p style="text-align: center; font-size: 18px">TacSL Gray</p>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div style="width: 100%; height: auto; aspect-ratio: 16/9; overflow: hidden; border-radius: 10px;">
-                <video class="sync-video" autoplay="" controls="" muted="" playsinline="" style="width: 100%; height: 100%; object-fit: cover; object-position: 0% 50%;">
-                  <source src="./static/videos/real_rollouts/bookshelving24/hydroshear_tactile.mp4" type="video/mp4">
-                </video>
-            </div>
-          </div>
-
-          <div class="column is-one-quarter has-text-centered">
-            <div style="width: 100%; height: auto; aspect-ratio: 16/9; overflow: hidden; border-radius: 10px;">
-                <video class="sync-video" autoplay="" controls="" muted="" playsinline="" style="width: 100%; height: 100%; object-fit: cover; object-position: 0% 50%;">
-                  <source src="./static/videos/real_rollouts/bookshelving24/fots_vision.mp4" type="video/mp4">
-                </video>
-            </div>
-            <div style="width: 100%; height: auto; aspect-ratio: 16/9; overflow: hidden; border-radius: 10px;">
-                <video class="sync-video" autoplay="" controls="" muted="" playsinline="" style="width: 100%; height: 100%; object-fit: cover; object-position: 0% 50%;">
-                  <source src="./static/videos/real_rollouts/bookshelving24/fots_tactile.mp4" type="video/mp4">
-                </video>
-            </div>
-          </div>
-
-          <div class="column is-one-quarter has-text-centered">
-            <div style="width: 100%; height: auto; aspect-ratio: 16/9; overflow: hidden; border-radius: 10px;">
-                <video class="sync-video" autoplay="" controls="" muted="" playsinline="" style="width: 100%; height: 100%; object-fit: cover; object-position: 0% 50%;">
-                  <source src="./static/videos/real_rollouts/bookshelving24/tacslshear_vision.mp4" type="video/mp4">
-                </video>
-            </div>
-            <div style="width: 100%; height: auto; aspect-ratio: 16/9; overflow: hidden; border-radius: 10px;">
-                <video class="sync-video" autoplay="" controls="" muted="" playsinline="" style="width: 100%; height: 100%; object-fit: cover; object-position: 0% 50%;">
-                  <source src="./static/videos/real_rollouts/bookshelving24/tacslshear_tactile.mp4" type="video/mp4">
-                </video>
-            </div>
-          </div>
-
-          <div class="column is-one-quarter has-text-centered">
-            <div style="width: 100%; height: auto; aspect-ratio: 16/9; overflow: hidden; border-radius: 10px;">
-                <video class="sync-video" autoplay="" controls="" muted="" playsinline="" style="width: 100%; height: 100%; object-fit: cover; object-position: 0% 50%;">
-                  <source src="./static/videos/real_rollouts/bookshelving24/tacslgray_vision.mp4" type="video/mp4">
-                </video>
-            </div>
-            <div style="width: 100%; height: auto; aspect-ratio: 16/9; overflow: hidden; border-radius: 10px;">
-                <video class="sync-video" autoplay="" controls="" muted="" playsinline="" style="width: 100%; height: 100%; object-fit: cover; object-position: 0% 50%;">
-                  <source src="./static/videos/real_rollouts/bookshelving24/tacslgray_tactile.mp4" type="video/mp4">
-                </video>
-            </div>
-          </div>
-        </div>
       </div>
 
-      <!-- DrawerPulling -->
-      <div class="item item-model4">
-        <h3 class="title is-3 has-text-centered" style="margin-top: 0.5rem; margin-bottom: 0.5rem;">Drawer Pulling</h3>
-        <div class="columns is-centered sync-group" style="align-items: center; margin: 0 1rem;">
-          
-          <!-- Vision Left (Cropped) -->
-          <div class="column is-one-quarter has-text-centered">
-            <div style="width: 100%; height: auto; aspect-ratio: 16/9; overflow: hidden; border-radius: 10px;">
-                <video class="sync-video" autoplay="" controls="" muted="" playsinline="" style="width: 100%; height: 100%; object-fit: cover; object-position: 0% 50%;">
-                  <source src="./static/videos/real_rollouts/drawerpulling/hydroshear_vision.mp4" type="video/mp4">
-                </video>
+      <!-- Drawer Pulling -->
+      <div class="column is-full-width">
+            <h3 class="title is-4" style="text-align: center; padding-bottom: 10px;">Drawer Pulling</h3>
+            <div class="carousel task-carousel" data-slides-to-show="1">
+              <div class="item">
+                <div class="columns" style="margin: 0;">
+                  <div class="column">
+                    <video class="center carousel-video" playsinline loop controls muted preload="metadata" src="./static/videos/real_rollouts/drawerpulling/hydroshear_vision.mp4" width="100%" style="border-radius:10px;"></video>
+                    <video class="center carousel-video" playsinline loop controls muted preload="metadata" src="./static/videos/real_rollouts/drawerpulling/hydroshear_tactile.mp4" width="100%" style="border-radius:10px;"></video>
+                    <p style="text-align: center; font-size: 18px">HydroShear</p>
+                  </div>
+                  <div class="column">
+                    <video class="center carousel-video" playsinline loop controls muted preload="metadata" src="./static/videos/real_rollouts/drawerpulling/fots_vision.mp4" width="100%" style="border-radius:10px;"></video>
+                    <video class="center carousel-video" playsinline loop controls muted preload="metadata" src="./static/videos/real_rollouts/drawerpulling/fots_tactile.mp4" width="100%" style="border-radius:10px;"></video>
+                    <p style="text-align: center; font-size: 18px">FOTS</p>
+                  </div>
+                  <div class="column">
+                    <video class="center carousel-video" playsinline loop controls muted preload="metadata" src="./static/videos/real_rollouts/drawerpulling/tacslshear_vision.mp4" width="100%" style="border-radius:10px;"></video>
+                    <video class="center carousel-video" playsinline loop controls muted preload="metadata" src="./static/videos/real_rollouts/drawerpulling/tacslshear_tactile.mp4" width="100%" style="border-radius:10px;"></video>
+                    <p style="text-align: center; font-size: 18px">TacSL Shear</p>
+                  </div>
+                  <div class="column">
+                    <video class="center carousel-video" playsinline loop controls muted preload="metadata" src="./static/videos/real_rollouts/drawerpulling/tacslgray_vision.mp4" width="100%" style="border-radius:10px;"></video>
+                    <video class="center carousel-video" playsinline loop controls muted preload="metadata" src="./static/videos/real_rollouts/drawerpulling/tacslgray_tactile.mp4" width="100%" style="border-radius:10px;"></video>
+                    <p style="text-align: center; font-size: 18px">TacSL Gray</p>
+                  </div>
+                </div>
+              </div>
+              <div class="item">
+                <div class="columns" style="margin: 0;">
+                  <div class="column">
+                    <video class="center carousel-video" playsinline loop controls muted preload="metadata" src="./static/videos/real_rollouts/drawerpulling/hydroshear_vision.mp4" width="100%" style="border-radius:10px;"></video>
+                    <video class="center carousel-video" playsinline loop controls muted preload="metadata" src="./static/videos/real_rollouts/drawerpulling/hydroshear_tactile.mp4" width="100%" style="border-radius:10px;"></video>
+                    <p style="text-align: center; font-size: 18px">HydroShear</p>
+                  </div>
+                  <div class="column">
+                    <video class="center carousel-video" playsinline loop controls muted preload="metadata" src="./static/videos/real_rollouts/drawerpulling/fots_vision.mp4" width="100%" style="border-radius:10px;"></video>
+                    <video class="center carousel-video" playsinline loop controls muted preload="metadata" src="./static/videos/real_rollouts/drawerpulling/fots_tactile.mp4" width="100%" style="border-radius:10px;"></video>
+                    <p style="text-align: center; font-size: 18px">FOTS</p>
+                  </div>
+                  <div class="column">
+                    <video class="center carousel-video" playsinline loop controls muted preload="metadata" src="./static/videos/real_rollouts/drawerpulling/tacslshear_vision.mp4" width="100%" style="border-radius:10px;"></video>
+                    <video class="center carousel-video" playsinline loop controls muted preload="metadata" src="./static/videos/real_rollouts/drawerpulling/tacslshear_tactile.mp4" width="100%" style="border-radius:10px;"></video>
+                    <p style="text-align: center; font-size: 18px">TacSL Shear</p>
+                  </div>
+                  <div class="column">
+                    <video class="center carousel-video" playsinline loop controls muted preload="metadata" src="./static/videos/real_rollouts/drawerpulling/tacslgray_vision.mp4" width="100%" style="border-radius:10px;"></video>
+                    <video class="center carousel-video" playsinline loop controls muted preload="metadata" src="./static/videos/real_rollouts/drawerpulling/tacslgray_tactile.mp4" width="100%" style="border-radius:10px;"></video>
+                    <p style="text-align: center; font-size: 18px">TacSL Gray</p>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div style="width: 100%; height: auto; aspect-ratio: 16/9; overflow: hidden; border-radius: 10px;">
-                <video class="sync-video" autoplay="" controls="" muted="" playsinline="" style="width: 100%; height: 100%; object-fit: cover; object-position: 0% 50%;">
-                  <source src="./static/videos/real_rollouts/drawerpulling/hydroshear_tactile.mp4" type="video/mp4">
-                </video>
-            </div>
-          </div>
-
-          <div class="column is-one-quarter has-text-centered">
-            <div style="width: 100%; height: auto; aspect-ratio: 16/9; overflow: hidden; border-radius: 10px;">
-                <video class="sync-video" autoplay="" controls="" muted="" playsinline="" style="width: 100%; height: 100%; object-fit: cover; object-position: 0% 50%;">
-                  <source src="./static/videos/real_rollouts/drawerpulling/fots_vision.mp4" type="video/mp4">
-                </video>
-            </div>
-            <div style="width: 100%; height: auto; aspect-ratio: 16/9; overflow: hidden; border-radius: 10px;">
-                <video class="sync-video" autoplay="" controls="" muted="" playsinline="" style="width: 100%; height: 100%; object-fit: cover; object-position: 0% 50%;">
-                  <source src="./static/videos/real_rollouts/drawerpulling/fots_tactile.mp4" type="video/mp4">
-                </video>
-            </div>
-          </div>
-
-          <div class="column is-one-quarter has-text-centered">
-            <div style="width: 100%; height: auto; aspect-ratio: 16/9; overflow: hidden; border-radius: 10px;">
-                <video class="sync-video" autoplay="" controls="" muted="" playsinline="" style="width: 100%; height: 100%; object-fit: cover; object-position: 0% 50%;">
-                  <source src="./static/videos/real_rollouts/drawerpulling/tacslshear_vision.mp4" type="video/mp4">
-                </video>
-            </div>
-            <div style="width: 100%; height: auto; aspect-ratio: 16/9; overflow: hidden; border-radius: 10px;">
-                <video class="sync-video" autoplay="" controls="" muted="" playsinline="" style="width: 100%; height: 100%; object-fit: cover; object-position: 0% 50%;">
-                  <source src="./static/videos/real_rollouts/drawerpulling/tacslshear_tactile.mp4" type="video/mp4">
-                </video>
-            </div>
-          </div>
-
-          <div class="column is-one-quarter has-text-centered">
-            <div style="width: 100%; height: auto; aspect-ratio: 16/9; overflow: hidden; border-radius: 10px;">
-                <video class="sync-video" autoplay="" controls="" muted="" playsinline="" style="width: 100%; height: 100%; object-fit: cover; object-position: 0% 50%;">
-                  <source src="./static/videos/real_rollouts/drawerpulling/tacslgray_vision.mp4" type="video/mp4">
-                </video>
-            </div>
-            <div style="width: 100%; height: auto; aspect-ratio: 16/9; overflow: hidden; border-radius: 10px;">
-                <video class="sync-video" autoplay="" controls="" muted="" playsinline="" style="width: 100%; height: 100%; object-fit: cover; object-position: 0% 50%;">
-                  <source src="./static/videos/real_rollouts/drawerpulling/tacslgray_tactile.mp4" type="video/mp4">
-                </video>
-            </div>
-          </div>
-        </div>
       </div>
 
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-four-fifths" style="text-align: center;">
+        <h3 class="title is-3" style="padding-bottom: 10px;"><strong>Zero-Shot Sim-to-Real Transfer Results</strong></h3>
+        <img src="./static/images/table.png" alt="Image description" width="70%">
+        <br>
+        <br>
+      </div>
     </div>
 </section>
 
@@ -754,7 +760,7 @@
 
 <script>
   document.addEventListener("DOMContentLoaded", () => {
-    const videos = document.querySelectorAll("video");
+    const videos = document.querySelectorAll("video:not(.carousel-video)");
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -767,7 +773,7 @@
         });
       },
       {
-        threshold: 0.25, // Adjust threshold as needed
+        threshold: 0.25,
       }
     );
 

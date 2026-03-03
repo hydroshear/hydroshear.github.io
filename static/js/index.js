@@ -29,33 +29,70 @@ $(document).ready(function() {
 
     });
 
-    var options = {
+    var taskCarouselOptions = {
 			slidesToScroll: 1,
-			slidesToShow: 3,
+			slidesToShow: 1,
 			loop: true,
 			infinite: true,
-			autoplay: true,
-			autoplaySpeed: 3000,
+			autoplay: false,
     }
 
-		// Initialize all div with carousel class
-    var carousels = bulmaCarousel.attach('.carousel', options);
+    var carousels = bulmaCarousel.attach('.task-carousel', taskCarouselOptions);
 
-    // Loop on each carousel initialized
-    for(var i = 0; i < carousels.length; i++) {
-    	// Add listener to  event
-    	carousels[i].on('before:show', state => {
-    		console.log(state);
-    	});
+    function activateSlideVideos(carouselEl) {
+      var activeItem = carouselEl.querySelector('.slider-item.is-active') || carouselEl.querySelector('.slider-item');
+      if (!activeItem) return;
+      var allVideos = carouselEl.querySelectorAll('.carousel-video');
+      allVideos.forEach(function(v) { v.pause(); });
+      var activeVideos = activeItem.querySelectorAll('.carousel-video');
+      activeVideos.forEach(function(v) {
+        if (v.preload !== 'auto') { v.preload = 'auto'; }
+        v.play();
+      });
     }
 
-    // Access to bulmaCarousel instance of an element
-    var element = document.querySelector('#my-element');
-    if (element && element.bulmaCarousel) {
-    	// bulmaCarousel instance is available as element.bulmaCarousel
-    	element.bulmaCarousel.on('before-show', function(state) {
-    		console.log(state);
-    	});
+    for (var i = 0; i < carousels.length; i++) {
+      (function(c) {
+        c.on('before:show', function() {
+          setTimeout(function() { activateSlideVideos(c.element); }, 100);
+        });
+      })(carousels[i]);
+    }
+
+    var carouselObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) { activateSlideVideos(entry.target); }
+        else {
+          entry.target.querySelectorAll('.carousel-video').forEach(function(v) { v.pause(); });
+        }
+      });
+    }, { threshold: 0.25 });
+    document.querySelectorAll('.task-carousel').forEach(function(el) { carouselObserver.observe(el); });
+
+    document.querySelectorAll('.carousel-video').forEach(function(video) {
+      video.addEventListener('seeked', function() { syncPair(this); });
+      video.addEventListener('play', function() { syncPair(this); });
+      video.addEventListener('pause', function() {
+        getSibling(this).forEach(function(s) { s.pause(); });
+      });
+    });
+
+    function getSibling(video) {
+      var col = video.closest('.column');
+      if (!col) return [];
+      var vids = col.querySelectorAll('.carousel-video');
+      var siblings = [];
+      vids.forEach(function(v) { if (v !== video) siblings.push(v); });
+      return siblings;
+    }
+
+    function syncPair(video) {
+      getSibling(video).forEach(function(s) {
+        if (Math.abs(s.currentTime - video.currentTime) > 0.2) {
+          s.currentTime = video.currentTime;
+        }
+        if (!video.paused && s.paused) s.play();
+      });
     }
 
     preloadInterpolationImages();
