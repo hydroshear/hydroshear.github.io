@@ -87,6 +87,28 @@
       font-size: 14px;
       color: #666;
     }
+    @media screen and (max-width: 768px) {
+      .carousel-nav {
+        font-size: 16px;
+        padding: 8px 10px;
+      }
+      .task-carousel p,
+      .sync-group p {
+        font-size: 12px !important;
+      }
+      .hero-body .title.is-1 {
+        font-size: 2.5rem !important;
+      }
+      .hero-body .subtitle.is-1 {
+        font-size: 1.2rem !important;
+      }
+      .publication-authors a {
+        font-size: 16px !important;
+      }
+      .publication-authors .affiliation-text {
+        font-size: 14px !important;
+      }
+    }
     .overlay {
       position: absolute;
       top: 0;
@@ -104,7 +126,7 @@
 </head>
 
 <section class="hero is-link is-fullheight video" style="overflow: hidden; position:relative;">
-  <div class="hero-video" style="height: 100%; width: 177.77777778vh; min-width: 100%;min-height: 56.25vw;">
+  <div class="hero-video is-hidden-mobile" style="height: 100%; width: 177.77777778vh; min-width: 100%;min-height: 56.25vw;">
     <video playsinline autoplay muted loop>
       <source src=" ./static/videos/teaser.mp4" type="video/mp4">
     </video>
@@ -171,11 +193,11 @@
           &nbsp;&nbsp;
           <u><a href="https://www.mmintlab.com/people/nima-fazeli/" style="font-size: 35px; color: white !important;">Nima Fazeli<sup>†‡</sup></a></u>
           <br>
-          <span style="font-size: 1.5rem; color: white !important;">* Equal Contribution</span>
+          <span class="affiliation-text" style="font-size: 1.5rem; color: white !important;">* Equal Contribution</span>
           <br>
-          <span style="font-size: 25px; color: white !important;"><sup>†</sup> Robotics Department, University of Michigan</span>
+          <span class="affiliation-text" style="font-size: 25px; color: white !important;"><sup>†</sup> Robotics Department, University of Michigan</span>
           <br>
-          <span style="font-size: 25px; color: white !important;"><sup>‡</sup> Amazon Industrial Robotics (AIR)</span>
+          <span class="affiliation-text" style="font-size: 25px; color: white !important;"><sup>‡</sup> Amazon Industrial Robotics (AIR)</span>
         </span>
       </div>
       <div class="column has-text-centered is-hidden-tablet">
@@ -539,7 +561,7 @@
   </div>
         <div class="column is-full-width">
             <h3 class="title is-1" style="text-align: center; padding-bottom: 10px;"><strong>Simulation Rollouts</strong></h3>
-            <div class="columns is-centered sync-group">
+            <div class="columns is-centered is-mobile sync-group">
               <div class="column">
                 <video class="center sync-video" playsinline autoplay loop controls muted src="./static/videos/sim_rollouts/peginsertion6.mp4" width="100%" style="border-radius:10px;"></video>
                 <video class="center sync-video" playsinline autoplay loop controls muted src="./static/videos/sim_rollouts/peginsertion6_hydrosoft.mp4" width="100%" style="border-radius:10px;"></video>
@@ -572,7 +594,7 @@
             <h3 class="title is-4" style="text-align: center; padding-bottom: 10px;">Peg Insertion</h3>
             <div class="task-carousel">
               <div class="item">
-                <div class="columns" style="margin: 0;">
+                <div class="columns is-mobile" style="margin: 0;">
                   <div class="column">
                     <video class="center carousel-video" playsinline loop controls muted preload="none" src="./static/videos/real_rollouts/peginsertion/hydroshear_vision.mp4" width="100%" style="border-radius:10px;"></video>
                     <video class="center carousel-video" playsinline loop controls muted preload="none" src="./static/videos/real_rollouts/peginsertion/hydroshear_tactile.mp4" width="100%" style="border-radius:10px;"></video>
@@ -596,7 +618,7 @@
                 </div>
               </div>
               <div class="item">
-                <div class="columns" style="margin: 0;">
+                <div class="columns is-mobile" style="margin: 0;">
                   <div class="column">
                     <video class="center carousel-video" playsinline loop controls muted preload="none" src="./static/videos/carousel/PegInsertion/ep_12/hydroshear_20260108_145307_success_vision_65_-5.0.mp4" width="100%" style="border-radius:10px;"></video>
                     <video class="center carousel-video" playsinline loop controls muted preload="none" src="./static/videos/carousel/PegInsertion/ep_12/hydroshear_20260108_145307_success_tactile_65_-5.0.mp4" width="100%" style="border-radius:10px;"></video>
@@ -620,7 +642,7 @@
                 </div>
               </div>
               <div class="item">
-                <div class="columns" style="margin: 0;">
+                <div class="columns is-mobile" style="margin: 0;">
                   <div class="column">
                     <video class="center carousel-video" playsinline loop controls muted preload="none" src="./static/videos/carousel/PegInsertion/ep_25/hydroshear_20260108_134319_success_vision_93_15.0.mp4" width="100%" style="border-radius:10px;"></video>
                     <video class="center carousel-video" playsinline loop controls muted preload="none" src="./static/videos/carousel/PegInsertion/ep_25/hydroshear_20260108_134319_success_tactile_93_15.0.mp4" width="100%" style="border-radius:10px;"></video>
@@ -644,7 +666,7 @@
                 </div>
               </div>
               <div class="item">
-                <div class="columns" style="margin: 0;">
+                <div class="columns is-mobile" style="margin: 0;">
                   <div class="column">
                     <video class="center carousel-video" playsinline loop controls muted preload="none" src="./static/videos/carousel/PegInsertion/ep_27/hydroshear_20260108_141204_success_vision_76_20.0.mp4" width="100%" style="border-radius:10px;"></video>
                     <video class="center carousel-video" playsinline loop controls muted preload="none" src="./static/videos/carousel/PegInsertion/ep_27/hydroshear_20260108_141204_success_tactile_76_20.0.mp4" width="100%" style="border-radius:10px;"></video>
@@ -668,7 +690,7 @@
                 </div>
               </div>
               <div class="item">
-                <div class="columns" style="margin: 0;">
+                <div class="columns is-mobile" style="margin: 0;">
                   <div class="column">
                     <video class="center carousel-video" playsinline loop controls muted preload="none" src="./static/videos/carousel/PegInsertion/ep_9/hydroshear_20260107_234442_success_vision_65_-30.0.mp4" width="100%" style="border-radius:10px;"></video>
                     <video class="center carousel-video" playsinline loop controls muted preload="none" src="./static/videos/carousel/PegInsertion/ep_9/hydroshear_20260107_234442_success_tactile_65_-30.0.mp4" width="100%" style="border-radius:10px;"></video>
@@ -699,7 +721,7 @@
             <h3 class="title is-4" style="text-align: center; padding-bottom: 10px;">Bin Packing</h3>
             <div class="task-carousel">
               <div class="item">
-                <div class="columns" style="margin: 0;">
+                <div class="columns is-mobile" style="margin: 0;">
                   <div class="column">
                     <video class="center carousel-video" playsinline loop controls muted preload="none" src="./static/videos/real_rollouts/binpacking/hydroshear_vision.mp4" width="100%" style="border-radius:10px;"></video>
                     <video class="center carousel-video" playsinline loop controls muted preload="none" src="./static/videos/real_rollouts/binpacking/hydroshear_tactile.mp4" width="100%" style="border-radius:10px;"></video>
@@ -723,7 +745,7 @@
                 </div>
               </div>
               <div class="item">
-                <div class="columns" style="margin: 0;">
+                <div class="columns is-mobile" style="margin: 0;">
                   <div class="column">
                     <video class="center carousel-video" playsinline loop controls muted preload="none" src="./static/videos/carousel/BinPacking/ep_18/hydroshear_20260113_001934_success_vision_83_x2_y3.mp4" width="100%" style="border-radius:10px;"></video>
                     <video class="center carousel-video" playsinline loop controls muted preload="none" src="./static/videos/carousel/BinPacking/ep_18/hydroshear_20260113_001934_success_tactile_83_x2_y3.mp4" width="100%" style="border-radius:10px;"></video>
@@ -747,7 +769,7 @@
                 </div>
               </div>
               <div class="item">
-                <div class="columns" style="margin: 0;">
+                <div class="columns is-mobile" style="margin: 0;">
                   <div class="column">
                     <video class="center carousel-video" playsinline loop controls muted preload="none" src="./static/videos/carousel/BinPacking/ep_2/hydroshear_20260112_233332_success_vision_64_x2_y2.mp4" width="100%" style="border-radius:10px;"></video>
                     <video class="center carousel-video" playsinline loop controls muted preload="none" src="./static/videos/carousel/BinPacking/ep_2/hydroshear_20260112_233332_success_tactile_64_x2_y2.mp4" width="100%" style="border-radius:10px;"></video>
@@ -771,7 +793,7 @@
                 </div>
               </div>
               <div class="item">
-                <div class="columns" style="margin: 0;">
+                <div class="columns is-mobile" style="margin: 0;">
                   <div class="column">
                     <video class="center carousel-video" playsinline loop controls muted preload="none" src="./static/videos/carousel/BinPacking/ep_20/hydroshear_20260113_002511_success_vision_116_x2_y0.mp4" width="100%" style="border-radius:10px;"></video>
                     <video class="center carousel-video" playsinline loop controls muted preload="none" src="./static/videos/carousel/BinPacking/ep_20/hydroshear_20260113_002511_success_tactile_116_x2_y0.mp4" width="100%" style="border-radius:10px;"></video>
@@ -795,7 +817,7 @@
                 </div>
               </div>
               <div class="item">
-                <div class="columns" style="margin: 0;">
+                <div class="columns is-mobile" style="margin: 0;">
                   <div class="column">
                     <video class="center carousel-video" playsinline loop controls muted preload="none" src="./static/videos/carousel/BinPacking/ep_26/hydroshear_20260113_005151_success_vision_88_x0_y2.mp4" width="100%" style="border-radius:10px;"></video>
                     <video class="center carousel-video" playsinline loop controls muted preload="none" src="./static/videos/carousel/BinPacking/ep_26/hydroshear_20260113_005151_success_tactile_88_x0_y2.mp4" width="100%" style="border-radius:10px;"></video>
@@ -826,7 +848,7 @@
             <h3 class="title is-4" style="text-align: center; padding-bottom: 10px;">Book Shelving</h3>
             <div class="task-carousel">
               <div class="item">
-                <div class="columns" style="margin: 0;">
+                <div class="columns is-mobile" style="margin: 0;">
                   <div class="column">
                     <video class="center carousel-video" playsinline loop controls muted preload="none" src="./static/videos/real_rollouts/bookshelving24/hydroshear_vision.mp4" width="100%" style="border-radius:10px;"></video>
                     <video class="center carousel-video" playsinline loop controls muted preload="none" src="./static/videos/real_rollouts/bookshelving24/hydroshear_tactile.mp4" width="100%" style="border-radius:10px;"></video>
@@ -850,7 +872,7 @@
                 </div>
               </div>
               <div class="item">
-                <div class="columns" style="margin: 0;">
+                <div class="columns is-mobile" style="margin: 0;">
                   <div class="column">
                     <video class="center carousel-video" playsinline loop controls muted preload="none" src="./static/videos/carousel/BookShelving/ep_16/hydroshear_20260118_004953_success_vision_329.mp4" width="100%" style="border-radius:10px;"></video>
                     <video class="center carousel-video" playsinline loop controls muted preload="none" src="./static/videos/carousel/BookShelving/ep_16/hydroshear_20260118_004953_success_tactile_329.mp4" width="100%" style="border-radius:10px;"></video>
@@ -874,7 +896,7 @@
                 </div>
               </div>
               <div class="item">
-                <div class="columns" style="margin: 0;">
+                <div class="columns is-mobile" style="margin: 0;">
                   <div class="column">
                     <video class="center carousel-video" playsinline loop controls muted preload="none" src="./static/videos/carousel/BookShelving/ep_2/hydroshear_20260117_234102_success_vision_181.mp4" width="100%" style="border-radius:10px;"></video>
                     <video class="center carousel-video" playsinline loop controls muted preload="none" src="./static/videos/carousel/BookShelving/ep_2/hydroshear_20260117_234102_success_tactile_181.mp4" width="100%" style="border-radius:10px;"></video>
@@ -898,7 +920,7 @@
                 </div>
               </div>
               <div class="item">
-                <div class="columns" style="margin: 0;">
+                <div class="columns is-mobile" style="margin: 0;">
                   <div class="column">
                     <video class="center carousel-video" playsinline loop controls muted preload="none" src="./static/videos/carousel/BookShelving/ep_21/hydroshear_20260118_010746_success_vision_243.mp4" width="100%" style="border-radius:10px;"></video>
                     <video class="center carousel-video" playsinline loop controls muted preload="none" src="./static/videos/carousel/BookShelving/ep_21/hydroshear_20260118_010746_success_tactile_243.mp4" width="100%" style="border-radius:10px;"></video>
@@ -922,7 +944,7 @@
                 </div>
               </div>
               <div class="item">
-                <div class="columns" style="margin: 0;">
+                <div class="columns is-mobile" style="margin: 0;">
                   <div class="column">
                     <video class="center carousel-video" playsinline loop controls muted preload="none" src="./static/videos/carousel/BookShelving/ep_3/hydroshear_20260117_232750_success_vision_322.mp4" width="100%" style="border-radius:10px;"></video>
                     <video class="center carousel-video" playsinline loop controls muted preload="none" src="./static/videos/carousel/BookShelving/ep_3/hydroshear_20260117_232750_success_tactile_322.mp4" width="100%" style="border-radius:10px;"></video>
@@ -953,7 +975,7 @@
             <h3 class="title is-4" style="text-align: center; padding-bottom: 10px;">Drawer Pulling</h3>
             <div class="task-carousel">
               <div class="item">
-                <div class="columns" style="margin: 0;">
+                <div class="columns is-mobile" style="margin: 0;">
                   <div class="column">
                     <video class="center carousel-video" playsinline loop controls muted preload="none" src="./static/videos/real_rollouts/drawerpulling/hydroshear_vision.mp4" width="100%" style="border-radius:10px;"></video>
                     <video class="center carousel-video" playsinline loop controls muted preload="none" src="./static/videos/real_rollouts/drawerpulling/hydroshear_tactile.mp4" width="100%" style="border-radius:10px;"></video>
@@ -977,7 +999,7 @@
                 </div>
               </div>
               <div class="item">
-                <div class="columns" style="margin: 0;">
+                <div class="columns is-mobile" style="margin: 0;">
                   <div class="column">
                     <video class="center carousel-video" playsinline loop controls muted preload="none" src="./static/videos/real_rollouts/drawerpulling/hydroshear_vision.mp4" width="100%" style="border-radius:10px;"></video>
                     <video class="center carousel-video" playsinline loop controls muted preload="none" src="./static/videos/real_rollouts/drawerpulling/hydroshear_tactile.mp4" width="100%" style="border-radius:10px;"></video>
